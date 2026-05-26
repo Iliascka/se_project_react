@@ -17,6 +17,7 @@
   margin: 0 20px 0 auto;
   font-family: "Cabinet Grotesk";
   font-weight: 700;
+  cursor: pointer;
 }
 
 .header__user-container {

@@ -7,6 +7,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
 }
 
 .modal__title {
@@ -28,6 +33,7 @@
   right: 28px;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .modal__close-icon {
@@ -42,7 +48,6 @@
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
-
   border-radius: 20px;
 }
 
