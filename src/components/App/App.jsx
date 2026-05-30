@@ -29,10 +29,8 @@ function App() {
 
   useEffect(() => {
     getWeather(coordinates, APIkey).then((data) => {
-      console.log(data);
       const filteredData = filterWeatherData(data);
       setWeatherData(filteredData);
-      debugger;
     });
   }, []);
 

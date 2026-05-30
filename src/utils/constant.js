@@ -1,8 +1,86 @@
 export const APIkey = "53eaa8fc0b312624e1508c1f8ecedb1f";
 export const coordinates = {
-  latitude: "38.246208",
-  longitude: "21.735069",
+  latitude: "37.971996112",
+  longitude: "23.73416373",
 };
+
+export const weatherOptions = [
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../assets/day/day_clear.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "clouds",
+    url: new URL("../assets/day/day_cloudy.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "rain",
+    url: new URL("../assets/day/day_rain.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "storm",
+    url: new URL("../assets/day/day_storm.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "snow",
+    url: new URL("../assets/day/day_snow.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "fog",
+    url: new URL("../assets/day/day_fog.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../assets/night/night_clear.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clouds",
+    url: new URL("../assets/night/night_cloudy.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "rain",
+    url: new URL("../assets/night/night_rain.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "storm",
+    url: new URL("../assets/night/night_storm.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "snow",
+    url: new URL("../assets/night/night_snow.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "fog",
+    url: new URL("../assets/night/night_fog.png", import.meta.url).href,
+  },
+];
+
+export const defaultWeatherOptions = {
+  day: {
+    day: true,
+    condition: "clear",
+    url: new URL("../assets/day/day_clear.png", import.meta.url).href,
+  },
+
+  night: {
+    day: false,
+    condition: "clear",
+    url: new URL("../assets/night/night_clear.png", import.meta.url).href,
+  },
+};
+
 export const defaultClothingItems = [
   {
     _id: 1,
