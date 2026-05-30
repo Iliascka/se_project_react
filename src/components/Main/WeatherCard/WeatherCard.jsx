@@ -1,8 +1,4 @@
-// import sunny from "../../../../assets/day/day_clear.png";
-import {
-  weatherOptions,
-  defaultWeatherOptions,
-} from "../../../../utils/constant";
+import { weatherOptions, defaultWeatherOptions } from "../../../utils/constant";
 import "./WeatherCard.css";
 function WeatherCard({ weatherData }) {
   const filteredOptions = weatherOptions.filter((option) => {
