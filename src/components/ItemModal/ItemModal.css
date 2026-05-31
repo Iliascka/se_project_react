@@ -3,6 +3,7 @@
 }
 
 .modal__content_type_image {
+  max-width: 498px;
   padding: 0;
 }
 
@@ -29,4 +30,18 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+@media screen and (max-width: 627px) {
+  .modal__content_type_image {
+    margin: 0 16px;
+    max-width: 343px;
+  }
+
+  /* .modal__close-icon {
+    display: none;
+  }
+  .modal__close-icon_dark {
+    display: block;
+  } */
 }

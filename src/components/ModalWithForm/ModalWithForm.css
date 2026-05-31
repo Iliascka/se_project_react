@@ -50,6 +50,7 @@
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
+  overflow: hidden;
 }
 
 .modal__form {
@@ -114,4 +115,17 @@
   font-weight: 700;
   font-size: 16px;
   color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__close-icon_dark {
+  display: none;
+}
+
+@media screen and (max-width: 627px) {
+  .modal__close-icon {
+    display: none;
+  }
+  .modal__close-icon_dark {
+    display: block;
+  }
 }
