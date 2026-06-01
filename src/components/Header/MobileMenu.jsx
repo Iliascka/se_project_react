@@ -2,10 +2,11 @@ import "./MobileMenu.css";
 import avatar from "../../assets/avatar.png";
 import closeBtnDark from "../../assets/closeBtnDark.png";
 
-function MobileHeader() {
+function MobileMenu({ handleAddClick, onMobileMenuClose }) {
   return (
     <div className="mobile-menu">
       <img
+        onClick={onMobileMenuClose}
         src={closeBtnDark}
         alt="close-button"
         className="mobile-menu__close-btn"
@@ -19,7 +20,7 @@ function MobileHeader() {
         />
       </div>
       <button
-        // onClick={handleAddClick}
+        onClick={handleAddClick}
         type="button"
         className="mobile-menu__add-clothes-btn"
       >
@@ -29,4 +30,4 @@ function MobileHeader() {
   );
 }
 
-export default MobileHeader;
+export default MobileMenu;

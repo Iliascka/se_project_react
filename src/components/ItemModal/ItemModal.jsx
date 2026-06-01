@@ -5,8 +5,11 @@ import "../ModalWithForm/ModalWithForm.css";
 
 function ItemModal({ isOpen, onClose, card }) {
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
-      <div className="modal__content modal__content_type_image">
+    <div className={`modal ${isOpen && "modal_opened"}`} onClick={onClose}>
+      <div
+        className="modal__content modal__content_type_image"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button onClick={onClose} type="button" className="modal__close">
           <img src={closeBtn} alt="close icon" className="modal__close-icon " />
           <img

@@ -33,6 +33,15 @@ function App() {
     setActiveModal("");
   };
 
+  const [isMobileMenuOpen, setMobileMenu] = useState(false);
+
+  const handleMobileMenuOpen = () => {
+    setMobileMenu(true);
+  };
+  const handleMobileMenuClose = () => {
+    setMobileMenu(false);
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -59,7 +68,13 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Header
+          handleAddClick={handleAddClick}
+          weatherData={weatherData}
+          onMobileMenuOpen={handleMobileMenuOpen}
+          onMobileMenuClose={handleMobileMenuClose}
+          isMobileMenuOpen={isMobileMenuOpen}
+        />
         <Main
           weatherData={weatherData}
           handleCardClick={handleCardClick}

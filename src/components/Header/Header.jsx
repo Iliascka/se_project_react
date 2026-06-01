@@ -2,9 +2,15 @@ import "./Header.css";
 import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo.svg";
 import menuIcon from "../../assets/menu_icon.png";
-import MobileHeader from "./MobileMenu";
+import MobileMenu from "./MobileMenu";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  onMobileMenuOpen,
+  isMobileMenuOpen,
+  onMobileMenuClose,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -13,7 +19,7 @@ function Header({ handleAddClick, weatherData }) {
     <header className="header">
       <div className="header__top">
         <img src={logo} alt="WTWR logo" className="header__logo" />
-        <button className="header__menu-btn">
+        <button onClick={onMobileMenuOpen} className="header__menu-btn">
           <img className="header__menu-icon" src={menuIcon} alt="menu" />
         </button>
       </div>
@@ -33,7 +39,12 @@ function Header({ handleAddClick, weatherData }) {
         <p className="header__username">Terrence Tegegne</p>
         <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
       </div>
-      <MobileHeader />
+      {isMobileMenuOpen && (
+        <MobileMenu
+          handleAddClick={handleAddClick}
+          onMobileMenuClose={onMobileMenuClose}
+        />
+      )}
     </header>
   );
 }
