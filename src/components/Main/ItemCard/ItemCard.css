@@ -24,7 +24,16 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 628px) {
+@media screen and (max-width: 628px) {
+  .card {
+    width: 150px;
+  }
+
+  .card__image {
+    width: 100%;
+  }
+
   .card__name {
+    top: 7px;
   }
 }

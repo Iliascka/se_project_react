@@ -1,0 +1,46 @@
+.mobile-menu {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 343px;
+  max-width: calc(100% - 32px);
+  background-color: rgba(255, 255, 255, 1);
+  padding: 60px 67px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 18px auto 20px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.mobile-menu__add-clothes-btn {
+  font-size: 20px;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.mobile-menu__user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-menu__username {
+  margin: 0;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 20px;
+}
+
+.mobile-menu__close-btn {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+}
