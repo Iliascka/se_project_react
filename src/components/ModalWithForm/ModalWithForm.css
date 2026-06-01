@@ -128,4 +128,20 @@
   .modal__close-icon_dark {
     display: block;
   }
+
+  .modal__type_add-garment {
+    max-width: 375px;
+    align-self: flex-end;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .modal__submit {
+    width: 100%;
+    width: 343px;
+    align-self: center;
+    padding: 12gtipx 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

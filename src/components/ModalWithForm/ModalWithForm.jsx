@@ -4,10 +4,8 @@ import closeBtnDark from "../../assets/closeBtnDark.png";
 
 function ModalWithForm({ children, title, buttonText, name, isOpen, onClose }) {
   return (
-    <div
-      className={`modal modal__type_${name} ${isOpen ? "modal_opened" : ""}`}
-    >
-      <div className="modal__content">
+    <div className={`modal  ${isOpen ? "modal_opened" : ""}`}>
+      <div className={`modal__content modal__type_${name}`}>
         <h2 className="modal__title">{title}</h2>
         <button onClick={onClose} type="button" className="modal__close">
           <img src={closeBtn} alt="close icon" className="modal__close-icon " />
