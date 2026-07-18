@@ -35,5 +35,5 @@
 }
 
 .toggle-switch__checkbox:checked ~ .toggle-switch__circle {
-  left: 22px;
+  left: 28px;
 }
