@@ -11,7 +11,7 @@ import {
   defaultClothingItems,
 } from "../../utils/constant";
 import Footer from "../Footer/Footer";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnit";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -27,7 +27,7 @@ function App() {
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
-  console.log(currentTemperatureUnit);
+
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
