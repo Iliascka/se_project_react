@@ -51,6 +51,12 @@ function App() {
     setMobileMenu(false);
   };
 
+  const onAddItem = (data) => {
+    console.log(data);
+    setClothingItems([...clothingItems, data]);
+    closeModal();
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -97,6 +103,7 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           onClose={closeModal}
+          onAddItem={onAddItem}
         ></AddItemModal>
         <ItemModal
           isOpen={activeModal === "preview"}
