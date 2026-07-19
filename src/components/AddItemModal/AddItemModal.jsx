@@ -1,7 +1,12 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-
+import { useForm } from "../../hooks/useForm";
 const AddItemModal = ({ isOpen, handleSubmit, onClose }) => {
-  // ...
+  const defaultValues = {
+    name: "",
+    link: "",
+    weatherType: "",
+  };
+  const { values, handleChange } = useForm(defaultValues);
 
   return (
     <ModalWithForm
@@ -15,6 +20,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onClose }) => {
       <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
+          name="name"
           type="text"
           className="modal__input"
           id="name"
@@ -25,6 +31,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onClose }) => {
       <label htmlFor="imageUrl" className="modal__label">
         Image URL{" "}
         <input
+          name="link"
           type="url"
           className="modal__input"
           id="imageUrl"
@@ -38,7 +45,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onClose }) => {
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           {" "}
           <input
-            name="weather"
+            name="weatherType"
             type="radio"
             className="modal__radio-input"
             value="hot"
@@ -49,7 +56,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onClose }) => {
         </label>
         <label htmlFor="warm" className="modal__label modal__label_type_radio">
           <input
-            name="weather"
+            name="weatherType"
             type="radio"
             className="modal__radio-input"
             value="warm"
@@ -59,7 +66,7 @@ const AddItemModal = ({ isOpen, handleSubmit, onClose }) => {
         </label>
         <label htmlFor="cold" className="modal__label modal__label_type_radio">
           <input
-            name="weather"
+            name="weatherType"
             type="radio"
             className="modal__radio-input"
             value="cold"
