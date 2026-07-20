@@ -13,6 +13,7 @@ import {
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Routes, Route } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -106,7 +107,7 @@ function App() {
               }
             />
 
-            <Route path="/profile" element={<p>Hello profile root</p>} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
 
           <Footer />
