@@ -1,3 +1,11 @@
+/* .cards__text {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 1);
+  margin: 32px 0 20px 0;
+  text-align: center;
+}
 .cards__list {
   display: flex;
   justify-content: center;
@@ -6,13 +14,4 @@
   padding: 0;
   list-style-type: none;
   gap: 12px;
-}
-
-.cards__text {
-  font-family: "Cabinet Grotesk";
-  font-weight: 700;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 1);
-  margin: 32px 0 20px 0;
-  text-align: center;
-}
+} */

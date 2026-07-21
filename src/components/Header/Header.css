@@ -35,6 +35,15 @@
   font-weight: 700;
 }
 
+.header__avatar {
+  margin: 0 0 0 12px;
+  flex: 0 0 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .header__menu-btn {
   display: none;
   border: none;
@@ -47,6 +56,11 @@
 
 .header__modal-user {
   display: none;
+}
+
+.header__nav-link {
+  text-decoration: none;
+  color: black;
 }
 
 @media screen and (max-width: 628px) {
