@@ -1,5 +1,4 @@
 import WeatherCard from "./WeatherCard/WeatherCard";
-import ItemCard from "./ItemCard/ItemCard";
 import "./Main.css";
 
 import ClothesSection from "../ClothesSection/ClothesSection";
@@ -16,6 +15,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
         clothingItems={filteredClothingItems}
         handleCardClick={handleCardClick}
         weatherData={weatherData}
+        isProfile={false}
       >
         {" "}
       </ClothesSection>

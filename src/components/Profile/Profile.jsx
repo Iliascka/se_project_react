@@ -1,15 +1,22 @@
-import Main from "../Main/Main";
+import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
 
-export default function Profile({ clothingItems, onCardClick, weatherData }) {
+export default function Profile({
+  clothingItems,
+  onCardClick,
+  weatherData,
+  handleAddClick,
+}) {
   return (
     <section className="profile">
       <SideBar />
-      <Main
+      <ClothesSection
         weatherData={weatherData}
-        onCardClick={onCardClick}
+        handleCardClick={onCardClick}
         clothingItems={clothingItems}
+        handleAddClick={handleAddClick}
+        isProfile={true}
       />
     </section>
   );

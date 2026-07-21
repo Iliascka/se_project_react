@@ -15,3 +15,17 @@
   list-style-type: none;
   gap: 12px;
 }
+
+.clothes-section__header {
+  display: flex;
+  gap: 20px;
+}
+
+.clothes-section__title {
+  font-size: 20px;
+}
+
+.clothes-section__add-button {
+  background-color: none;
+  border: none;
+}

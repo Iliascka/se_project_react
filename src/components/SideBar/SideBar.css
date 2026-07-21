@@ -1,10 +1,15 @@
+.sidebar {
+  width: 229px;
+  flex-shrink: 0;
+}
+
 .sidebar__avatar {
-  margin: 0 0 0 12px;
-  flex: 0 0 40px;
+  margin: 0;
+  flex-shrink: 0;
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  display: block;
 }
 
 .sidebar__username {
@@ -18,6 +23,7 @@
   flex-direction: row-reverse;
   align-items: center;
   gap: 16px;
+  margin: 0;
 }
 
 .sidebar__avatar_none {

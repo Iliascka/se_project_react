@@ -7,16 +7,30 @@ export default function ClothesSection({
   clothingItems,
   handleCardClick,
   weatherData,
+  isProfile,
+  handleAddClick,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <section className="clothes-section">
       <div className="clothes-section__row">
-        <p className="clothes-section__text">
-          Today is {weatherData.temp[currentTemperatureUnit]}°
-          {currentTemperatureUnit} You may want to wear:
-        </p>
-        <button>Button</button>
+        {isProfile ? (
+          <div className="clothes-section__header">
+            <h2 className="clothes-section__title">Your items</h2>
+            <button
+              type="button"
+              className="clothes-section__add-button"
+              onClick={handleAddClick}
+            >
+              + Add new
+            </button>
+          </div>
+        ) : (
+          <p className="clothes-section__text">
+            Today is {weatherData.temp[currentTemperatureUnit]}°
+            {currentTemperatureUnit} / You may want to wear:
+          </p>
+        )}
       </div>
       <ul className="clothes-section__list">
         {clothingItems.map((item) => {

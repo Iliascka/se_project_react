@@ -14,8 +14,11 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+  const isProfile = location.pathname === "/profile";
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999, C: 999 },
@@ -114,6 +117,7 @@ function App() {
                   weatherData={weatherData}
                   clothingItems={clothingItems}
                   onCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
                 />
               }
             />
@@ -121,16 +125,20 @@ function App() {
 
           <Footer />
         </div>
-        <AddItemModal
-          isOpen={activeModal === "add-garment"}
-          onClose={closeModal}
-          onAddItem={onAddItem}
-        ></AddItemModal>
-        <ItemModal
-          isOpen={activeModal === "preview"}
-          card={selectedCard}
-          onClose={closeModal}
-        />
+        <div
+          className={`modal-layer ${isProfile ? "modal-layer_profile" : ""}`}
+        >
+          <AddItemModal
+            isOpen={activeModal === "add-garment"}
+            onClose={closeModal}
+            onAddItem={onAddItem}
+          ></AddItemModal>
+          <ItemModal
+            isOpen={activeModal === "preview"}
+            card={selectedCard}
+            onClose={closeModal}
+          />
+        </div>
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );

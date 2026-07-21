@@ -1,3 +1,9 @@
 .profile {
   display: flex;
+  align-items: flex-start;
+  gap: 116px;
+}
+
+.modal-layer_profile .modal__content {
+  transform: translateX(172.5px);
 }
