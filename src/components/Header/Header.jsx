@@ -36,7 +36,7 @@ function Header({
         type="button"
         className="header__add-clothes-btn"
       >
-        Add clothes
+        + Add clothes
       </button>
       <NavLink to="/profile" className="header__nav-link">
         <div className="header__user-container">

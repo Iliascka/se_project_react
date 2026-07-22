@@ -19,13 +19,19 @@
 .clothes-section__header {
   display: flex;
   gap: 20px;
+  font-family: "Cabinet Grotesk";
 }
 
 .clothes-section__title {
   font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk";
 }
 
 .clothes-section__add-button {
   background-color: none;
   border: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
 }
