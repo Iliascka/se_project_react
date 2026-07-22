@@ -11,3 +11,18 @@ const handleServerResponse = (res) => {
 export const getItems = () => {
   return fetch(`${baseUrl}/Items`, { headers }).then(handleServerResponse);
 };
+
+export const addItem = ({ name, weather, imageUrl }) => {
+  return fetch(`${baseUrl}/Items`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ name, imageUrl, weather }),
+  }).then(handleServerResponse);
+};
+
+export const deleteItem = ({ itemId }) => {
+  return fetch(`${baseUrl}/items/${itemId}`, {
+    method: "DELETE",
+    headers,
+  }).then(handleServerResponse);
+};

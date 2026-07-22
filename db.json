@@ -101,6 +101,48 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Ilias Ka",
+      "imageUrl": "",
+      "weather": "hot",
+      "_id": 17
+    },
+    {
+      "name": "Ilias Ka",
+      "imageUrl": "https://jpeg.org/jpeg/",
+      "weather": "hot",
+      "_id": 18
+    },
+    {
+      "name": "Ilias",
+      "imageUrl": "https://jpeg.org/jpeg/",
+      "weather": "hot",
+      "_id": 19
+    },
+    {
+      "name": "Nature",
+      "imageUrl": "https://www.magnific.com/free-photos-vectors/nature-wallpaper",
+      "weather": "hot",
+      "_id": 20
+    },
+    {
+      "name": "Nature",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e",
+      "weather": "hot",
+      "_id": 21
+    },
+    {
+      "name": "Nature",
+      "imageUrl": "https://windows10spotlight.com/wp-content/uploads/2021/03/4689b5c75f833dbcbf40dc3ac05cf326.jpg",
+      "weather": "hot",
+      "_id": 22
+    },
+    {
+      "name": "Ilias Ka",
+      "imageUrl": "https://thumbs.dreamstime.com/b/idyllic-summer-landscape-clear-mountain-lake-alps-45054687.jpg",
+      "weather": "hot",
+      "_id": 23
     }
   ]
 }

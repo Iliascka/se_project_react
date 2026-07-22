@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
 import { getItems } from "../../utils/api";
+import { addItem } from "../../utils/api";
 function App() {
   const location = useLocation();
   const isProfile = location.pathname === "/profile";
@@ -53,9 +54,14 @@ function App() {
   };
 
   const onAddItem = (data) => {
-    console.log(data);
-    setClothingItems([...clothingItems, data]);
-    closeModal();
+    addItem(data)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        closeModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   useEffect(() => {
@@ -67,7 +73,7 @@ function App() {
       .catch(console.error);
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems([...data].reverse());
       })
       .catch(console.error);
   }, []);
