@@ -21,11 +21,30 @@
 }
 .modal__footer {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 20px 0 32px 32px;
+  justify-content: space-between;
+  /* gap: 12px; */
+  margin: 20px 32px 32px 32px;
 }
 
+.modal__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal__delete-btn {
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.modal__delete-btn:hover {
+  color: rgba(255, 77, 0, 0.841);
+}
 .modal__close {
   border: none;
   background-color: transparent;

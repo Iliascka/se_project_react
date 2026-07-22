@@ -11,8 +11,8 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
-import { getItems } from "../../utils/api";
-import { addItem } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
+
 function App() {
   const location = useLocation();
   const isProfile = location.pathname === "/profile";
@@ -31,6 +31,20 @@ function App() {
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+  };
+
+  const handleDeleteItem = (itemId) => {
+    deleteItem({ itemId })
+      .then(() => {
+        const updatedItems = clothingItems.filter(
+          (item) => item._id !== itemId,
+        );
+        setClothingItems(updatedItems);
+        closeModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const handleCardClick = (card) => {
@@ -144,6 +158,7 @@ function App() {
             isOpen={activeModal === "preview"}
             card={selectedCard}
             onClose={closeModal}
+            onDelete={handleDeleteItem}
           />
         </div>
       </div>
