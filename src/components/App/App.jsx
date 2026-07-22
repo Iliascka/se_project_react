@@ -5,17 +5,13 @@ import Main from "../Main/Main";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constant";
+import { coordinates, APIkey } from "../../utils/constant";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
-
+import { getItems } from "../../utils/api";
 function App() {
   const location = useLocation();
   const isProfile = location.pathname === "/profile";
@@ -29,7 +25,7 @@ function App() {
 
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleToggleSwitchChange = () => {
@@ -67,6 +63,11 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+      })
+      .catch(console.error);
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -119,7 +120,7 @@ function App() {
                   onCardClick={handleCardClick}
                   handleAddClick={handleAddClick}
                 />
-              }``
+              }
             />
           </Routes>
 
