@@ -3,10 +3,7 @@ import closeBtn from "../../assets/closeBtnWhite.png";
 import closeBtnDark from "../../assets/closeBtnDark.png";
 import "../ModalWithForm/ModalWithForm.css";
 
-function ItemModal({ isOpen, onClose, card, onDelete }) {
-  const handleDeleteClick = () => {
-    onDelete(card._id);
-  };
+function ItemModal({ isOpen, onClose, card, deleteModal }) {
   return (
     <div className={`modal ${isOpen && "modal_opened"}`} onClick={onClose}>
       <div
@@ -28,7 +25,7 @@ function ItemModal({ isOpen, onClose, card, onDelete }) {
             <p className="modal__weather">Weather: {card.weather}</p>
           </div>
           <button
-            onClick={handleDeleteClick}
+            onClick={deleteModal}
             type="button"
             className="modal__delete-btn"
           >

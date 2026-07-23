@@ -20,6 +20,7 @@
   font-size: 20px;
   font-family: "Cabinet Grotesk";
   font-weight: 700;
+  cursor: pointer;
 }
 .confirm-modal__text {
   font-family: "Cabinet Grotesk";
@@ -37,6 +38,7 @@
   font-size: 20px;
   font-weight: 700;
   color: rgba(255, 77, 0, 1);
+  cursor: pointer;
 }
 .confirm-modal__cancel {
   background-color: transparent;
@@ -45,4 +47,5 @@
   font-size: 20px;
   font-weight: 700;
   color: rgba(0, 0, 0, 1);
+  cursor: pointer;
 }

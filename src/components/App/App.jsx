@@ -55,6 +55,9 @@ function App() {
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
+  const handleDeleteModal = () => {
+    setActiveModal("confirm-delete");
+  };
   const closeModal = () => {
     setActiveModal("");
   };
@@ -151,7 +154,12 @@ function App() {
         <div
           className={`modal-layer ${isProfile ? "modal-layer_profile" : ""}`}
         >
-          <ConfirmDeleteModal></ConfirmDeleteModal>
+          <ConfirmDeleteModal
+            isOpen={activeModal === "confirm-delete"}
+            onDelete={handleDeleteItem}
+            card={selectedCard}
+            onClose={closeModal}
+          ></ConfirmDeleteModal>
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onClose={closeModal}
@@ -161,7 +169,7 @@ function App() {
             isOpen={activeModal === "preview"}
             card={selectedCard}
             onClose={closeModal}
-            onDelete={handleDeleteItem}
+            deleteModal={handleDeleteModal}
           />
         </div>
       </div>
