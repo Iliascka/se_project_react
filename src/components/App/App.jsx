@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
 import { getItems, addItem, deleteItem } from "../../utils/api";
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 
 function App() {
   const location = useLocation();
@@ -119,6 +120,7 @@ function App() {
             onMobileMenuClose={handleMobileMenuClose}
             isMobileMenuOpen={isMobileMenuOpen}
           />
+
           <Routes>
             <Route
               path="/"
@@ -149,6 +151,7 @@ function App() {
         <div
           className={`modal-layer ${isProfile ? "modal-layer_profile" : ""}`}
         >
+          <ConfirmDeleteModal></ConfirmDeleteModal>
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onClose={closeModal}
