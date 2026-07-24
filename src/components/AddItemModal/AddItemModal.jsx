@@ -10,6 +10,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(values);
     onAddItem(values);
   }
 

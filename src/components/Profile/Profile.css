@@ -4,6 +4,7 @@
   gap: 116px;
 }
 
-.modal-layer_profile .modal__content {
+.modal-layer_profile .modal__content,
+.modal-layer_profile .confirm-modal {
   transform: translateX(172.5px);
 }
