@@ -8,3 +8,11 @@
 .modal-layer_profile .confirm-modal {
   transform: translateX(172.5px);
 }
+
+@media screen and (max-width: 708px) {
+  .profile {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+}

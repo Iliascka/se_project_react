@@ -18,6 +18,8 @@
 
 .clothes-section__header {
   display: flex;
+  align-items: center;
+
   gap: 20px;
   font-family: "Cabinet Grotesk";
 }
@@ -34,4 +36,19 @@
   font-size: 20px;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 1020px) {
+  .clothes-section__header {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 628px) {
+  .clothes-section__list {
+    display: grid;
+    grid-template-columns: repeat(2, 164px);
+    gap: 16px;
+    justify-content: center;
+  }
 }

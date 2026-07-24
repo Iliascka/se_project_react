@@ -40,3 +40,20 @@
   line-height: 20px;
   width: 40px;
 }
+
+@media screen and (max-width: 800px) {
+  .sidebar {
+    /* width: 100%; */
+  }
+
+  .sidebar__profile {
+    flex-direction: row;
+    /* align-items: flex-start; */
+    gap: 16px;
+  }
+
+  .sidebar__avatar {
+    width: 56px;
+    height: 56px;
+  }
+}

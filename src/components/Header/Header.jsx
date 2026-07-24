@@ -19,17 +19,21 @@ function Header({
   });
   return (
     <header className="header">
-      <NavLink to="/">
-        <div className="header__top">
-          <img src={logo} alt="WTWR logo" className="header__logo" />
-          <button onClick={onMobileMenuOpen} className="header__menu-btn">
-            <img className="header__menu-icon" src={menuIcon} alt="menu" />
-          </button>
+      <div className="header__top">
+        <div className="header__brand">
+          <NavLink to="/">
+            <img src={logo} alt="WTWR logo" className="header__logo" />
+          </NavLink>
+          <p className="header__date-and-location">
+            {currentDate} {weatherData.city}
+          </p>
         </div>
-      </NavLink>
-      <p className="header__date-and-location">
-        {currentDate} {weatherData.city}
-      </p>
+
+        <button onClick={onMobileMenuOpen} className="header__menu-btn">
+          <img className="header__menu-icon" src={menuIcon} alt="menu" />
+        </button>
+      </div>
+
       <ToggleSwitch />
       <button
         onClick={handleAddClick}

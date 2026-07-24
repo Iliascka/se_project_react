@@ -1,6 +1,7 @@
 import "./MobileMenu.css";
 import avatar from "../../assets/avatar.png";
 import closeBtnDark from "../../assets/closeBtnDark.png";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function MobileMenu({ handleAddClick, onMobileMenuClose }) {
   return (
@@ -26,6 +27,7 @@ function MobileMenu({ handleAddClick, onMobileMenuClose }) {
       >
         + Add clothes
       </button>
+      <ToggleSwitch />
     </div>
   );
 }
