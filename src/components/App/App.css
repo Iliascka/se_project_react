@@ -9,6 +9,15 @@
   padding: 0 20px;
 }
 
+.weather-loading {
+  font-size: 50px;
+  padding: 125px 0;
+  display: block;
+  margin: 0;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+}
+
 @media screen and (max-width: 500px) {
   .page__content {
     padding: 0 16px;

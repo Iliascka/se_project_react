@@ -82,11 +82,14 @@ function App() {
       });
   };
 
+  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        setIsWeatherDataLoaded(true);
       })
       .catch(console.error);
     getItems()
@@ -116,39 +119,45 @@ function App() {
     >
       <div className="page">
         <div className="page__content">
-          <Header
-            handleAddClick={handleAddClick}
-            weatherData={weatherData}
-            onMobileMenuOpen={handleMobileMenuOpen}
-            onMobileMenuClose={handleMobileMenuClose}
-            isMobileMenuOpen={isMobileMenuOpen}
-          />
+          {isWeatherDataLoaded ? (
+            <>
+              <Header
+                handleAddClick={handleAddClick}
+                weatherData={weatherData}
+                onMobileMenuOpen={handleMobileMenuOpen}
+                onMobileMenuClose={handleMobileMenuClose}
+                isMobileMenuOpen={isMobileMenuOpen}
+              />
 
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Main
+                      weatherData={weatherData}
+                      handleCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                    />
+                  }
                 />
-              }
-            />
 
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  weatherData={weatherData}
-                  clothingItems={clothingItems}
-                  onCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
-                  isMobileMenuOpen={isMobileMenuOpen}
+                <Route
+                  path="/profile"
+                  element={
+                    <Profile
+                      weatherData={weatherData}
+                      clothingItems={clothingItems}
+                      onCardClick={handleCardClick}
+                      handleAddClick={handleAddClick}
+                      isMobileMenuOpen={isMobileMenuOpen}
+                    />
+                  }
                 />
-              }
-            />
-          </Routes>
+              </Routes>
+            </>
+          ) : (
+            <p className="weather-loading">Loading weather....</p>
+          )}
 
           <Footer />
         </div>
