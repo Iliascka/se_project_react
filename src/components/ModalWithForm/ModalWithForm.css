@@ -87,14 +87,14 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  cursor: pointer;
 }
 
 .modal__radio-input {
   font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 16px;
-
-  /* margin: 0 4px 8px 0; */
+  cursor: pointer;
 }
 
 .modal__submit {
@@ -134,10 +134,11 @@
     align-self: flex-end;
     border-radius: 12px 12px 0 0;
   }
+}
 
+@media screen and (max-width: 500px) {
   .modal__submit {
     width: 100%;
-    width: 343px;
     align-self: center;
     padding: 12gtipx 16px;
     display: flex;

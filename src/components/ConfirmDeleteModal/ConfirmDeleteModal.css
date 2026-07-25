@@ -38,8 +38,14 @@
   font-size: 20px;
   font-weight: 700;
   color: rgba(255, 77, 0, 1);
+  transition: color 0.2s ease;
   cursor: pointer;
 }
+
+.confirm-modal__delete:hover {
+  color: rgba(255, 77, 0, 0.7);
+}
+
 .confirm-modal__cancel {
   background-color: transparent;
   border: none;
@@ -48,4 +54,8 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 1);
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+.confirm-modal__cancel:hover {
+  color: rgba(0, 0, 0, 0.657);
 }

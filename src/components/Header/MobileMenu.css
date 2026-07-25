@@ -23,6 +23,11 @@
   cursor: pointer;
   background: none;
   border: none;
+  color: rgba(0, 0, 0, 1);
+  transition: color 0.2s ease;
+}
+.mobile-menu__add-clothes-btn:hover {
+  color: rgba(0, 0, 0, 0.657);
 }
 
 .mobile-menu__user-container {

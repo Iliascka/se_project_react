@@ -43,7 +43,7 @@
   transition: color 0.2s ease;
 }
 .modal__delete-btn:hover {
-  color: rgba(255, 77, 0, 0.841);
+  color: rgba(255, 77, 0, 0.7);
 }
 .modal__close {
   border: none;
