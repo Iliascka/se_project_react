@@ -25,6 +25,16 @@
   align-items: center;
   gap: 16px;
   margin: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 20px 0;
+}
+
+.sidebar__user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
 }
 
 .sidebar__avatar_none {
@@ -41,13 +51,16 @@
   width: 40px;
 }
 
-@media screen and (max-width: 800px) {
-  .sidebar {
-    /* width: 100%; */
-  }
+.sidebar__edit-button,
+.sidebar__logout-button {
+  display: none;
+  background-color: transparent;
+  border: none;
+}
 
+@media screen and (max-width: 800px) {
   .sidebar__profile {
-    flex-direction: row;
+    /* flex-direction: row; */
     /* align-items: flex-start; */
     gap: 16px;
   }
@@ -55,5 +68,29 @@
   .sidebar__avatar {
     width: 56px;
     height: 56px;
+    align-self: flex-start;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .sidebar__edit-button,
+  .sidebar__logout-button {
+    display: block;
+    font-size: 20px;
+    font-family: "Cabinet Grotesk";
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .sidebar__username {
+    margin: 0 0 4px 0;
+    font-size: 24px;
+  }
+  .sidebar {
+    width: 343px;
+  }
+
+  .sidebar__profile {
+    justify-content: flex-end;
   }
 }

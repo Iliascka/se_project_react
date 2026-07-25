@@ -7,7 +7,11 @@ export default function SideBar() {
   return (
     <aside className="sidebar">
       <div className="sidebar__profile">
-        <div className="sidebar__username">{username}</div>
+        <div className="sidebar__user-info">
+          <p className="sidebar__username">{username} </p>
+          <button className="sidebar__edit-button">Change Profile Data</button>
+          <button className="sidebar__logout-button">Log out</button>
+        </div>
         {avatar ? (
           <img
             src={avatar || avatarDefault}

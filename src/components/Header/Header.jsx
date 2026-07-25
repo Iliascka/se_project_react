@@ -25,7 +25,7 @@ function Header({
             <img src={logo} alt="WTWR logo" className="header__logo" />
           </NavLink>
           <p className="header__date-and-location">
-            {currentDate} {weatherData.city}
+            {currentDate}, {weatherData.city}
           </p>
         </div>
 

@@ -75,6 +75,16 @@
   color: black;
 }
 
+@media screen and (max-width: 728px) {
+  .header > .toggle-switch {
+    display: none;
+  }
+  .header__add-clothes-btn,
+  .header__user-container {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 628px) {
   .header {
     flex-direction: column;
@@ -92,11 +102,6 @@
     display: block;
   }
 
-  .header__add-clothes-btn,
-  .header__user-container {
-    display: none;
-  }
-
   .header__modal-user {
     display: block;
   }
@@ -112,8 +117,13 @@
   .header__date-and-location {
     font-size: 16px;
   }
+}
 
-  .header > .toggle-switch {
-    display: none;
+@media screen and (max-width: 500px) {
+  .header {
+    width: 343px;
+    margin: auto;
+    box-sizing: border-box;
+    /* align-self: center; */
   }
 }
