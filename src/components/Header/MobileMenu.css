@@ -43,4 +43,10 @@
   position: absolute;
   top: 11px;
   right: 11px;
+  cursor: pointer;
+}
+
+.mobile-menu__nav-link {
+  text-decoration: none;
+  color: black;
 }

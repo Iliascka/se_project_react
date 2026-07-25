@@ -9,8 +9,12 @@ export default function SideBar() {
       <div className="sidebar__profile">
         <div className="sidebar__user-info">
           <p className="sidebar__username">{username} </p>
-          <button className="sidebar__edit-button">Change Profile Data</button>
-          <button className="sidebar__logout-button">Log out</button>
+          <button type="button" className="sidebar__edit-button">
+            Change Profile Data
+          </button>
+          <button type="button" className="sidebar__logout-button">
+            Log out
+          </button>
         </div>
         {avatar ? (
           <img

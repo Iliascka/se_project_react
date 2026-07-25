@@ -2,6 +2,7 @@ import "./MobileMenu.css";
 import avatar from "../../assets/avatar.png";
 import closeBtnDark from "../../assets/closeBtnDark.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { NavLink } from "react-router-dom";
 
 function MobileMenu({ handleAddClick, onMobileMenuClose }) {
   return (
@@ -12,14 +13,16 @@ function MobileMenu({ handleAddClick, onMobileMenuClose }) {
         alt="close-button"
         className="mobile-menu__close-btn"
       />
-      <div className="mobile-menu__user-container">
-        <p className="mobile-menu__username">Terrence Tegegne</p>
-        <img
-          src={avatar}
-          alt="Terrence Tegegne"
-          className="mobile-menu__avatar"
-        />
-      </div>
+      <NavLink to="/profile" className="mobile-menu__nav-link">
+        <div className="mobile-menu__user-container">
+          <p className="mobile-menu__username">Terrence Tegegne</p>
+          <img
+            src={avatar}
+            alt="Terrence Tegegne"
+            className="mobile-menu__avatar"
+          />
+        </div>
+      </NavLink>
       <button
         onClick={handleAddClick}
         type="button"
