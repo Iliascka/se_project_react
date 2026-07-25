@@ -144,6 +144,7 @@ function App() {
                   clothingItems={clothingItems}
                   onCardClick={handleCardClick}
                   handleAddClick={handleAddClick}
+                  isMobileMenuOpen={isMobileMenuOpen}
                 />
               }
             />

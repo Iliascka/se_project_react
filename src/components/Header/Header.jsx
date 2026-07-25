@@ -19,7 +19,9 @@ function Header({
   });
   return (
     <header className="header">
-      <div className="header__top">
+      <div
+        className={`header__top ${isMobileMenuOpen && "header__top-hidden"}`}
+      >
         <div className="header__brand">
           <NavLink to="/">
             <img src={logo} alt="WTWR logo" className="header__logo" />

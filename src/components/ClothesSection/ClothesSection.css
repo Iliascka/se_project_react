@@ -59,3 +59,9 @@
     justify-content: center;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .clothes-section__header-hidden {
+    display: none;
+  }
+}

@@ -145,4 +145,11 @@
     align-items: center;
     justify-content: center;
   }
+
+  @media screen and (max-width: 500px) {
+    .modal {
+      position: fixed;
+      inset: 0;
+    }
+  }
 }

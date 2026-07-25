@@ -9,13 +9,16 @@ export default function ClothesSection({
   weatherData,
   isProfile,
   handleAddClick,
+  isMobileMenuOpen,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <section className="clothes-section">
       <div className="clothes-section__row">
         {isProfile ? (
-          <div className="clothes-section__header">
+          <div
+            className={`clothes-section__header ${isMobileMenuOpen ? "clothes-section__header-hidden" : ""}`}
+          >
             <h2 className="clothes-section__title">Your items</h2>
             <button
               type="button"

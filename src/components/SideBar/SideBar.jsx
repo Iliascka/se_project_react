@@ -1,11 +1,11 @@
 import "./SideBar.css";
 import avatarDefault from "../../assets/avatar.png";
-export default function SideBar() {
+export default function SideBar({ isMobileMenuOpen }) {
   const username = "Terrence Tegegne";
   const avatar = avatarDefault;
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isMobileMenuOpen ? "sidebar_hidden" : ""}`}>
       <div className="sidebar__profile">
         <div className="sidebar__user-info">
           <p className="sidebar__username">{username} </p>
