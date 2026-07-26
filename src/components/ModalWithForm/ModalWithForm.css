@@ -140,16 +140,14 @@
   .modal__submit {
     width: 100%;
     align-self: center;
-    padding: 12gtipx 16px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  @media screen and (max-width: 500px) {
-    .modal {
-      position: fixed;
-      inset: 0;
-    }
+  .modal {
+    position: fixed;
+    inset: 0;
   }
 }

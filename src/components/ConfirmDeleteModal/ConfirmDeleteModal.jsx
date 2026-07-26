@@ -13,7 +13,7 @@ function ConfirmDeleteModal({ isOpen, onDelete, card, onClose }) {
             onClick={onClose}
             src={closeBtn}
             alt="closeButton"
-            className="confirm-modal___close"
+            className="confirm-modal__close"
           />
         </button>
         <p className="confirm-modal__text">

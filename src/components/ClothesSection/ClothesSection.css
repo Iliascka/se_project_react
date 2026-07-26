@@ -31,15 +31,13 @@
 }
 
 .clothes-section__add-button {
-  background-color: none;
+  background-color: transparent;
   border: none;
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.6);
-  transition:
-    color 0,
-    2s ease;
+  transition: color 0.2s ease;
 }
 .clothes-section__add-button:hover {
   color: rgba(0, 0, 0, 0.4);
