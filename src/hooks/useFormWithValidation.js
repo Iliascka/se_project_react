@@ -1,21 +1,23 @@
 import { useCallback, useState } from "react";
 
-const validateValue = (name, value) => {
+const validateValue = (name, value = "") => {
+  const normalizedValue = typeof value === "string" ? value : "";
+
   switch (name) {
     case "name":
-      if (!value.trim()) return "Please enter a garment name.";
-      if (value.trim().length < 2) {
+      if (!normalizedValue.trim()) return "Please enter a garment name.";
+      if (normalizedValue.trim().length < 2) {
         return "Name must be at least 2 characters long.";
       }
       return "";
     case "imageUrl":
-      if (!value.trim()) return "Please enter an image URL.";
-      if (!/^(https?:\/\/)\S+\.\S+/.test(value.trim())) {
+      if (!normalizedValue.trim()) return "Please enter an image URL.";
+      if (!/^(https?:\/\/)\S+\.\S+/.test(normalizedValue.trim())) {
         return "Please enter a valid URL.";
       }
       return "";
     case "weather":
-      if (!value) return "Please select a weather type.";
+      if (!normalizedValue) return "Please select a weather type.";
       return "";
     default:
       return "";
@@ -26,6 +28,7 @@ export function useFormWithValidation(defaultValues) {
   const [values, setValues] = useState(defaultValues);
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const validateForm = useCallback((formValues) => {
     const nextErrors = Object.keys(formValues).reduce((acc, fieldName) => {
@@ -46,13 +49,16 @@ export function useFormWithValidation(defaultValues) {
   const handleChange = useCallback(
     (evt) => {
       const { name, value } = evt.target;
-      const nextValues = { ...values, [name]: value };
-      setValues(nextValues);
-      const { nextErrors, nextIsValid } = validateForm(nextValues);
-      setErrors(nextErrors);
-      setIsValid(nextIsValid);
+
+      setValues((previousValues) => {
+        const nextValues = { ...previousValues, [name]: value };
+        const { nextErrors, nextIsValid } = validateForm(nextValues);
+        setErrors(nextErrors);
+        setIsValid(nextIsValid);
+        return nextValues;
+      });
     },
-    [validateForm, values],
+    [validateForm],
   );
 
   const resetForm = useCallback(
@@ -60,6 +66,7 @@ export function useFormWithValidation(defaultValues) {
       setValues(newValues);
       setErrors({});
       setIsValid(false);
+      setHasSubmitted(false);
     },
     [defaultValues],
   );
@@ -69,6 +76,8 @@ export function useFormWithValidation(defaultValues) {
     setValues,
     errors,
     isValid,
+    hasSubmitted,
+    setHasSubmitted,
     handleChange,
     resetForm,
     validateForm,

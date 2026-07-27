@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useFormWithValidation } from "../../hooks/useForm";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import "./AddItemModal.css";
 import { useEffect, useMemo } from "react";
 
@@ -13,7 +13,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     [],
   );
 
-  const { values, errors, isValid, handleChange, resetForm, validateForm } =
+  const { values, errors, hasSubmitted, setHasSubmitted, handleChange, resetForm, validateForm } =
     useFormWithValidation(defaultValues);
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setHasSubmitted(true);
     const { nextIsValid } = validateForm(values);
 
     if (!nextIsValid) {
@@ -35,6 +36,14 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     });
   }
 
+  const showNameError =
+    Boolean(errors.name) && (hasSubmitted || values.name.trim().length > 0);
+  const showImageUrlError =
+    Boolean(errors.imageUrl) &&
+    (hasSubmitted || values.imageUrl.trim().length > 0);
+  const showWeatherError =
+    Boolean(errors.weather) && (hasSubmitted || values.weather !== "");
+
   return (
     <ModalWithForm
       name="add-garment"
@@ -43,21 +52,20 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Add garment"
-      isSubmitDisabled={!isValid}
     >
       <label htmlFor="name" className="modal__label">
         Name
         <input
           name="name"
           type="text"
-          className={`modal__input ${errors.name ? "modal__input_type_error" : ""}`}
+          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
           id="name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
-          required
+          aria-invalid={showNameError}
         />
-        {errors.name ? (
+        {showNameError ? (
           <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
@@ -66,14 +74,14 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
         <input
           name="imageUrl"
           type="url"
-          className={`modal__input ${errors.imageUrl ? "modal__input_type_error" : ""}`}
+          className={`modal__input ${showImageUrlError ? "modal__input_type_error" : ""}`}
           id="imageUrl"
           placeholder="Image URL"
           value={values.imageUrl}
           onChange={handleChange}
-          required
+          aria-invalid={showImageUrlError}
         />
-        {errors.imageUrl ? (
+        {showImageUrlError ? (
           <span className="modal__error">{errors.imageUrl}</span>
         ) : null}
       </label>
@@ -89,7 +97,6 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             onChange={handleChange}
             checked={values.weather === "hot"}
             id="hot"
-            required
           />
           Hot
         </label>
@@ -117,7 +124,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           />
           Cold
         </label>
-        {errors.weather ? (
+        {showWeatherError ? (
           <span className="modal__error">{errors.weather}</span>
         ) : null}
       </fieldset>
