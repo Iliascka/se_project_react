@@ -72,7 +72,7 @@ function App() {
   };
 
   const onAddItem = (data) => {
-    addItem(data)
+    return addItem(data)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeModal();
