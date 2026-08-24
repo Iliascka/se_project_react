@@ -5,7 +5,7 @@ import Main from "../Main/Main";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { coordinates, APIkey } from "../../utils/constant";
+import { APIkey } from "../../utils/constant";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Routes, Route } from "react-router-dom";
@@ -83,8 +83,24 @@ function App() {
   };
 
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
+  const [coordinates, setCoordinates] = useState(null);
 
   useEffect(() => {
+    (navigator.geolocation.getCurrentPosition((position) => {
+      setCoordinates({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+    }),
+      (error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!coordinates) {
+      return;
+    }
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
@@ -97,7 +113,7 @@ function App() {
         setClothingItems([...data].reverse());
       })
       .catch(console.error);
-  }, []);
+  }, [coordinates]);
 
   useEffect(() => {
     if (!activeModal) return;
