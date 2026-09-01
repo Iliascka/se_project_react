@@ -177,12 +177,12 @@ function App() {
             <p className="weather-loading">Loading weather....</p>
           )}
           <RegisterModal
-            isOpen={true}
+            isOpen={false}
             onClose={closeModal}
             onAddItem={onAddItem}
           />
           <LoginModal
-            isOpen={true}
+            isOpen={false}
             onClose={closeModal}
             onAddItem={onAddItem}
           />

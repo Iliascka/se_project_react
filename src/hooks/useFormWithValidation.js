@@ -31,7 +31,7 @@ const validateValue = (name, value = "") => {
     case "weather":
       if (!normalizedValue) return "Please select a weather type.";
       return "";
-    case "avatarUrl":
+    case "avatar":
       if (!normalizedValue.trim()) return "Please enter an avatar URL.";
       if (!/^(https?:\/\/)\S+\.\S+/.test(normalizedValue.trim())) {
         return "Please enter a valid URL.";

@@ -9,7 +9,7 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
       email: "",
       password: "",
       name: "",
-      avatarUrl: "",
+      avatar: "",
     }),
     [],
   );
@@ -51,9 +51,8 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
   const showPasswordError =
     Boolean(errors.password) &&
     (hasSubmitted || values.password.trim().length > 0);
-  const showAvatarUrlError =
-    Boolean(errors.avatarUrl) &&
-    (hasSubmitted || values.avatarUrl.trim().length > 0);
+  const showavatarError =
+    Boolean(errors.avatar) && (hasSubmitted || values.avatar.trim().length > 0);
 
   return (
     <ModalWithForm
@@ -114,20 +113,20 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
           <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
-      <label htmlFor="avatarUrl" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar
         <input
-          name="avatarUrl"
+          name="avatar"
           type="url"
-          className={`modal__input ${showAvatarUrlError ? "modal__input_type_error" : ""}`}
-          id="avatarUrl"
+          className={`modal__input ${showavatarError ? "modal__input_type_error" : ""}`}
+          id="avatar"
           placeholder="Avatar URL  "
-          value={values.avatarUrl}
+          value={values.avatar}
           onChange={handleChange}
-          aria-invalid={showAvatarUrlError}
+          aria-invalid={showavatarError}
         />
-        {showAvatarUrlError ? (
-          <span className="modal__error">{errors.avatarUrl}</span>
+        {showavatarError ? (
+          <span className="modal__error">{errors.avatar}</span>
         ) : null}
       </label>
     </ModalWithForm>
