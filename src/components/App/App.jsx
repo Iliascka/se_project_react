@@ -15,6 +15,7 @@ import { getItems, addItem, deleteItem } from "../../utils/api";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const location = useLocation();
@@ -86,6 +87,7 @@ function App() {
 
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     (navigator.geolocation.getCurrentPosition((position) => {
@@ -162,13 +164,16 @@ function App() {
                 <Route
                   path="/profile"
                   element={
-                    <Profile
-                      weatherData={weatherData}
-                      clothingItems={clothingItems}
-                      onCardClick={handleCardClick}
-                      handleAddClick={handleAddClick}
-                      isMobileMenuOpen={isMobileMenuOpen}
-                    />
+                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                      {" "}
+                      <Profile
+                        weatherData={weatherData}
+                        clothingItems={clothingItems}
+                        onCardClick={handleCardClick}
+                        handleAddClick={handleAddClick}
+                        isMobileMenuOpen={isMobileMenuOpen}
+                      />{" "}
+                    </ProtectedRoute>
                   }
                 />
               </Routes>

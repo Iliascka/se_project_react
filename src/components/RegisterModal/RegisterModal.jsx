@@ -1,6 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-
 import { useEffect, useMemo } from "react";
 
 const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
