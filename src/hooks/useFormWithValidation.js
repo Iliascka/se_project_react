@@ -4,8 +4,20 @@ const validateValue = (name, value = "") => {
   const normalizedValue = typeof value === "string" ? value : "";
 
   switch (name) {
+    case "email":
+      if (!normalizedValue.trim()) return "Please enter a valid email.";
+      if (!/^\S+@S+\. \S+$/.test(normalizedValue.trim())) {
+        return "Please enter a valid email.";
+      }
+      return "";
+    case "password":
+      if (!normalizedValue.trim()) return "Please enter a valid password";
+      if (normalizedValue.trim().length < 8) {
+        return "Password must be at least 8 characters long";
+      }
+      return "";
     case "name":
-      if (!normalizedValue.trim()) return "Please enter a garment name.";
+      if (!normalizedValue.trim()) return "Please enter a name.";
       if (normalizedValue.trim().length < 2) {
         return "Name must be at least 2 characters long.";
       }
@@ -18,6 +30,12 @@ const validateValue = (name, value = "") => {
       return "";
     case "weather":
       if (!normalizedValue) return "Please select a weather type.";
+      return "";
+    case "avatarUrl":
+      if (!normalizedValue.trim()) return "Please enter an avatar URL.";
+      if (!/^(https?:\/\/)\S+\.\S+/.test(normalizedValue.trim())) {
+        return "Please enter a valid URL.";
+      }
       return "";
     default:
       return "";
