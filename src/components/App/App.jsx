@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   const location = useLocation();
@@ -176,6 +177,11 @@ function App() {
             <p className="weather-loading">Loading weather....</p>
           )}
           <RegisterModal
+            isOpen={true}
+            onClose={closeModal}
+            onAddItem={onAddItem}
+          />
+          <LoginModal
             isOpen={true}
             onClose={closeModal}
             onAddItem={onAddItem}

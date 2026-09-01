@@ -1,6 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import "./RegisterModal.css";
 
 import { useEffect, useMemo } from "react";
 
@@ -68,7 +67,7 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
       buttonModifier="small"
     >
       <label htmlFor="email" className="modal__label">
-        Email
+        Email*
         <input
           name="email"
           type="email"
@@ -84,7 +83,7 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
         ) : null}
       </label>
       <label htmlFor="password" className="modal__label">
-        Password
+        Password*
         <input
           name="password"
           type="password"
@@ -122,7 +121,7 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
           type="url"
           className={`modal__input ${showAvatarUrlError ? "modal__input_type_error" : ""}`}
           id="avatarUrl"
-          placeholder="Avatar Url"
+          placeholder="Avatar URL  "
           value={values.avatarUrl}
           onChange={handleChange}
           aria-invalid={showAvatarUrlError}
