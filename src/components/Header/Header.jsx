@@ -14,7 +14,7 @@ function Header({
   onMobileMenuClose,
   isLoggedIn,
   handleSignUp,
-  handleLogIn,
+  handleLoginModal,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -64,7 +64,7 @@ function Header({
           <p className="header__sign-up" onClick={handleSignUp}>
             Sign Up
           </p>
-          <p className="header__log-in" onClick={handleLogIn}>
+          <p className="header__log-in" onClick={handleLoginModal}>
             Log in
           </p>
         </div>

@@ -70,7 +70,7 @@ function App() {
   const handleSignUp = () => {
     setActiveModal("signUp");
   };
-  const handleLogIn = () => {
+  const handleLoginModal = () => {
     setActiveModal("logIn");
   };
 
@@ -97,13 +97,30 @@ function App() {
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [userData, setUserData] = useState({ email: "", password: "" });
 
   const handleRegistration = ({ name, avatar, email, password }) => {
     return auth
       .register({ email, password, name, avatar })
       .then(() => {
-        setIsLoggedIn(true);
+        handleLogin({ email, password });
         closeModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleLogin = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+    auth
+      .login({ email, password })
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("jwt", data.token);
+          setIsLoggedIn(true);
+          closeModal();
+        }
       })
       .catch(console.error);
   };
@@ -164,7 +181,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 handleAddClick={handleAddClick}
                 handleSignUp={handleSignUp}
-                handleLogIn={handleLogIn}
+                handleLoginModal={handleLoginModal}
                 weatherData={weatherData}
                 onMobileMenuOpen={handleMobileMenuOpen}
                 onMobileMenuClose={handleMobileMenuClose}
@@ -212,6 +229,7 @@ function App() {
             isOpen={activeModal === "logIn"}
             onClose={closeModal}
             onAddItem={onAddItem}
+            handleLogin={handleLogin}
           />
           <Footer />
         </div>

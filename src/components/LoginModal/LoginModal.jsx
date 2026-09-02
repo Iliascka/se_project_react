@@ -3,7 +3,7 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 import { useEffect, useMemo } from "react";
 
-const LoginModal = ({ isOpen, onAddItem, onClose }) => {
+const LoginModal = ({ isOpen, handleLogin, onAddItem, onClose }) => {
   const defaultValues = useMemo(
     () => ({
       email: "",
@@ -37,9 +37,8 @@ const LoginModal = ({ isOpen, onAddItem, onClose }) => {
       return;
     }
 
-    onAddItem(values).then(() => {
-      resetForm(defaultValues);
-    });
+    handleLogin(values);
+    resetForm(defaultValues);
   }
 
   const showEmailError =

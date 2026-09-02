@@ -38,8 +38,9 @@ const RegisterModal = ({ isOpen, handleRegistration, onClose }) => {
       return;
     }
 
-    handleRegistration(values);
-    resetForm(defaultValues);
+    handleRegistration(values).then(() => {
+      resetForm(defaultValues);
+    });
   }
 
   const showNameError =
