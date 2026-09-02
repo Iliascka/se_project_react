@@ -13,6 +13,8 @@ function Header({
   isMobileMenuOpen,
   onMobileMenuClose,
   isLoggedIn,
+  handleSignUp,
+  handleSignIn,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -59,8 +61,12 @@ function Header({
         </div>
       ) : (
         <div className="header__authentication-container">
-          <p className="header__signUp">Sign Up</p>
-          <p className="header__Login">Log in</p>
+          <p className="header__signUp" onClick={handleSignUp}>
+            Sign Up
+          </p>
+          <p className="header__signIn" onClick={handleSignIn}>
+            Log in
+          </p>
         </div>
       )}
       {isMobileMenuOpen && (

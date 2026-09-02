@@ -96,9 +96,15 @@
   font-size: 20px;
 }
 
+.header__signIn,
+.header__signUp {
+  cursor: pointer;
+}
+
 .header__authentication-logIn-container {
   display: flex;
 }
+
 @media screen and (max-width: 728px) {
   .header > .toggle-switch {
     display: none;

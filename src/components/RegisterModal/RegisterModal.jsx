@@ -44,7 +44,7 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
   }
 
   const showNameError =
-    Boolean(errors.name) && (hasSubmitted || values.name.trim().length > 0);
+    Boolean(errors.nmae) && (hasSubmitted || values.name.trim().length > 0);
   const showEmailError =
     Boolean(errors.email) && (hasSubmitted || values.email.trim().length > 0);
   const showPasswordError =

@@ -59,11 +59,19 @@ function App() {
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
+
   const handleDeleteModal = () => {
     setActiveModal("confirm-delete");
   };
   const closeModal = () => {
     setActiveModal("");
+  };
+
+  const handleSignUp = () => {
+    setActiveModal("signUp");
+  };
+  const handleSignIn = () => {
+    setActiveModal("signIn");
   };
 
   const [isMobileMenuOpen, setMobileMenu] = useState(false);
@@ -149,6 +157,8 @@ function App() {
               <Header
                 isLoggedIn={isLoggedIn}
                 handleAddClick={handleAddClick}
+                handleSignUp={handleSignUp}
+                handleSignIn={handleSignIn}
                 weatherData={weatherData}
                 onMobileMenuOpen={handleMobileMenuOpen}
                 onMobileMenuClose={handleMobileMenuClose}
@@ -187,12 +197,12 @@ function App() {
             <p className="weather-loading">Loading weather....</p>
           )}
           <RegisterModal
-            isOpen={false}
+            isOpen={activeModal === "signUp"}
             onClose={closeModal}
             onAddItem={onAddItem}
           />
           <LoginModal
-            isOpen={false}
+            isOpen={activeModal === "signIn"}
             onClose={closeModal}
             onAddItem={onAddItem}
           />
