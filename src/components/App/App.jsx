@@ -16,6 +16,7 @@ import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import * as auth from "../../utils/auth";
 
 function App() {
   const location = useLocation();
@@ -89,6 +90,10 @@ function App() {
   const [coordinates, setCoordinates] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const handleRegistration = ({ name, avatar, email, password }) => {
+    return auth.register({ email, password, name, avatar });
+  };
+
   useEffect(() => {
     (navigator.geolocation.getCurrentPosition((position) => {
       setCoordinates({
@@ -142,6 +147,7 @@ function App() {
           {isWeatherDataLoaded ? (
             <>
               <Header
+                isLoggedIn={isLoggedIn}
                 handleAddClick={handleAddClick}
                 weatherData={weatherData}
                 onMobileMenuOpen={handleMobileMenuOpen}
@@ -165,7 +171,6 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
-                      {" "}
                       <Profile
                         weatherData={weatherData}
                         clothingItems={clothingItems}

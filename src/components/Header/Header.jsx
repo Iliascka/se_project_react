@@ -12,6 +12,7 @@ function Header({
   onMobileMenuOpen,
   isMobileMenuOpen,
   onMobileMenuClose,
+  isLoggedIn,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -35,21 +36,33 @@ function Header({
           <img className="header__menu-icon" src={menuIcon} alt="menu" />
         </button>
       </div>
-
       <ToggleSwitch />
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add clothes
-      </button>
-      <NavLink to="/profile" className="header__nav-link">
-        <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
+      {isLoggedIn ? (
+        <div className="header__authentication-logIn-container">
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            + Add clothes
+          </button>
+          <NavLink to="/profile" className="header__nav-link">
+            <div className="header__user-container">
+              <p className="header__username">Terrence Tegegne</p>
+              <img
+                src={avatar}
+                alt="Terrence Tegegne"
+                className="header__avatar"
+              />
+            </div>
+          </NavLink>
         </div>
-      </NavLink>
+      ) : (
+        <div className="header__authentication-container">
+          <p className="header__signUp">Sign Up</p>
+          <p className="header__Login">Log in</p>
+        </div>
+      )}
       {isMobileMenuOpen && (
         <MobileMenu
           handleAddClick={handleAddClick}

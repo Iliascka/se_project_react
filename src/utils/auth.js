@@ -9,7 +9,7 @@ const handleServerResponse = (res) => {
 
 const headers = { "Content-Type": "application/json" };
 
-const signUp = ({ name, avatar, email, password }) => {
+export const register = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signUp`, {
     method: "POST",
     headers,
@@ -17,7 +17,7 @@ const signUp = ({ name, avatar, email, password }) => {
   }).then(handleServerResponse);
 };
 
-const singIn = ({ email, password }) => {
+export const login = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers,

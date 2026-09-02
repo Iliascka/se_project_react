@@ -87,7 +87,18 @@
   text-decoration: none;
   color: black;
 }
+.header__authentication-container {
+  display: flex;
+  margin: 0 0 0 20px;
+  gap: 20px;
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 20px;
+}
 
+.header__authentication-logIn-container {
+  display: flex;
+}
 @media screen and (max-width: 728px) {
   .header > .toggle-switch {
     display: none;
