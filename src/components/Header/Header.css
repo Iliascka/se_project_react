@@ -96,8 +96,8 @@
   font-size: 20px;
 }
 
-.header__signIn,
-.header__signUp {
+.header__log-in,
+.header__sign-up {
   cursor: pointer;
 }
 

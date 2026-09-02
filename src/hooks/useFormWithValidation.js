@@ -6,7 +6,7 @@ const validateValue = (name, value = "") => {
   switch (name) {
     case "email":
       if (!normalizedValue.trim()) return "Please enter a valid email.";
-      if (!/^\S+@S+\. \S+$/.test(normalizedValue.trim())) {
+      if (!/^\S+@\S+\.\S+$/.test(normalizedValue.trim())) {
         return "Please enter a valid email.";
       }
       return "";

@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useEffect, useMemo } from "react";
 
-const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
+const RegisterModal = ({ isOpen, handleRegistration, onClose }) => {
   const defaultValues = useMemo(
     () => ({
       email: "",
@@ -38,13 +38,12 @@ const RegisterModal = ({ isOpen, onAddItem, onClose }) => {
       return;
     }
 
-    onAddItem(values).then(() => {
-      resetForm(defaultValues);
-    });
+    handleRegistration(values);
+    resetForm(defaultValues);
   }
 
   const showNameError =
-    Boolean(errors.nmae) && (hasSubmitted || values.name.trim().length > 0);
+    Boolean(errors.name) && (hasSubmitted || values.name.trim().length > 0);
   const showEmailError =
     Boolean(errors.email) && (hasSubmitted || values.email.trim().length > 0);
   const showPasswordError =

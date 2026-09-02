@@ -70,8 +70,8 @@ function App() {
   const handleSignUp = () => {
     setActiveModal("signUp");
   };
-  const handleSignIn = () => {
-    setActiveModal("signIn");
+  const handleLogIn = () => {
+    setActiveModal("logIn");
   };
 
   const [isMobileMenuOpen, setMobileMenu] = useState(false);
@@ -99,7 +99,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleRegistration = ({ name, avatar, email, password }) => {
-    return auth.register({ email, password, name, avatar });
+    return auth
+      .register({ email, password, name, avatar })
+      .then(() => {
+        setIsLoggedIn(true);
+        closeModal();
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -158,7 +164,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 handleAddClick={handleAddClick}
                 handleSignUp={handleSignUp}
-                handleSignIn={handleSignIn}
+                handleLogIn={handleLogIn}
                 weatherData={weatherData}
                 onMobileMenuOpen={handleMobileMenuOpen}
                 onMobileMenuClose={handleMobileMenuClose}
@@ -200,9 +206,10 @@ function App() {
             isOpen={activeModal === "signUp"}
             onClose={closeModal}
             onAddItem={onAddItem}
+            handleRegistration={handleRegistration}
           />
           <LoginModal
-            isOpen={activeModal === "signIn"}
+            isOpen={activeModal === "logIn"}
             onClose={closeModal}
             onAddItem={onAddItem}
           />
