@@ -12,18 +12,25 @@ export const getItems = () => {
   return fetch(`${baseUrl}/items`, { headers }).then(handleServerResponse);
 };
 
-export const addItem = ({ name, weather, imageUrl }) => {
+export const addItem = ({ name, weather, imageUrl }, token) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(handleServerResponse);
 };
 
-export const deleteItem = ({ itemId }) => {
+export const deleteItem = ({ itemId }, token) => {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers,
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(handleServerResponse);
 };
 

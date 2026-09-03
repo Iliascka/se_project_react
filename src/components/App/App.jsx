@@ -40,7 +40,11 @@ function App() {
   };
 
   const handleDeleteItem = (itemId) => {
-    deleteItem({ itemId })
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+    return deleteItem({ itemId }, jwt)
       .then(() => {
         const updatedItems = clothingItems.filter(
           (item) => item._id !== itemId,
@@ -85,7 +89,11 @@ function App() {
   };
 
   const onAddItem = (data) => {
-    return addItem(data)
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+    return addItem(data, jwt)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeModal();
@@ -135,7 +143,6 @@ function App() {
       .then(({ name, avatar }) => {
         setIsLoggedIn(true);
         setUserData({ name, avatar });
-        console.log({ name, avatar });
       })
       .catch(console.error);
   }, []);
