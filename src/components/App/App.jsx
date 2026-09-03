@@ -11,7 +11,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import { getItems, addItem, deleteItem, getUserInfo } from "../../utils/api";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -98,7 +98,7 @@ function App() {
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [userData, setUserData] = useState({ email: "", password: "" });
+  const [userData, setUserData] = useState({ name: "", avatar: "" });
 
   const handleRegistration = ({ name, avatar, email, password }) => {
     return auth
@@ -131,6 +131,13 @@ function App() {
     if (!jwt) {
       return;
     }
+    getUserInfo(jwt)
+      .then(({ name, avatar }) => {
+        setIsLoggedIn(true);
+        setUserData({ name, avatar });
+        console.log({ name, avatar });
+      })
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
