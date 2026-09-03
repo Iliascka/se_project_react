@@ -26,3 +26,13 @@ export const deleteItem = ({ itemId }) => {
     headers,
   }).then(handleServerResponse);
 };
+
+export const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};

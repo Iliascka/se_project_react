@@ -17,6 +17,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
+import { setToken, getToken } from "../../utils/token";
 
 function App() {
   const location = useLocation();
@@ -117,13 +118,20 @@ function App() {
       .login({ email, password })
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("jwt", data.token);
+          setToken(data.token);
           setIsLoggedIn(true);
           closeModal();
         }
       })
       .catch(console.error);
   };
+
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+  }, []);
 
   useEffect(() => {
     (navigator.geolocation.getCurrentPosition((position) => {
@@ -210,7 +218,7 @@ function App() {
                         onCardClick={handleCardClick}
                         handleAddClick={handleAddClick}
                         isMobileMenuOpen={isMobileMenuOpen}
-                      />{" "}
+                      />
                     </ProtectedRoute>
                   }
                 />
