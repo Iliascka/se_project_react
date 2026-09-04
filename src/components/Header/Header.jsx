@@ -23,7 +23,8 @@ function Header({
     day: "numeric",
   });
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { name, avatar } = useContext(CurrentUserContext);
+  const avatarContent = avatar ? avatar : name.trim().charAt(0).toUpperCase();
 
   return (
     <header className="header">
@@ -55,12 +56,18 @@ function Header({
           </button>
           <NavLink to="/profile" className="header__nav-link">
             <div className="header__user-container">
-              <p className="header__username">Terrence Tegegne</p>
-              <img
-                src={avatar}
-                alt="Terrence Tegegne"
-                className="header__avatar"
-              />
+              <p className="header__username">{name}</p>
+              {avatar ? (
+                <img
+                  src={avatarContent}
+                  alt="Terrence Tegegne"
+                  className="header__avatar"
+                />
+              ) : (
+                <span className="header__avatar header__avatar_none">
+                  {avatarContent}
+                </span>
+              )}
             </div>
           </NavLink>
         </div>

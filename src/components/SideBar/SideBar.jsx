@@ -1,14 +1,16 @@
 import "./SideBar.css";
-import avatarDefault from "../../assets/avatar.png";
-export default function SideBar({ isMobileMenuOpen }) {
-  const username = "Terrence Tegegne";
-  const avatar = avatarDefault;
+// import avatarDefault from "../../assets/avatar.png";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
+export default function SideBar({ isMobileMenuOpen }) {
+  const { name, avatar } = useContext(CurrentUserContext);
+  const avatarContent = avatar ? avatar : name.trim().toUpperCase().charAt(0);
   return (
     <aside className={`sidebar ${isMobileMenuOpen ? "sidebar_hidden" : ""}`}>
       <div className="sidebar__profile">
         <div className="sidebar__user-info">
-          <p className="sidebar__username">{username} </p>
+          <p className="sidebar__username">{name} </p>
           <button type="button" className="sidebar__edit-button">
             Change Profile Data
           </button>
@@ -18,13 +20,13 @@ export default function SideBar({ isMobileMenuOpen }) {
         </div>
         {avatar ? (
           <img
-            src={avatar || avatarDefault}
+            src={avatarContent}
             alt="user-avatar"
             className="sidebar__avatar"
           />
         ) : (
           <span className="sidebar__avatar sidebar__avatar_none">
-            {username?.toUpperCase().charAt(0) || ""}
+            {avatarContent}
           </span>
         )}
       </div>
