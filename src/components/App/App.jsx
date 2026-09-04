@@ -122,8 +122,8 @@ function App() {
 
   const handleUserInfo = ({ token }) => {
     return getUserInfo(token)
-      .then(({ name, avatar }) => {
-        setCurrentUser({ name, avatar });
+      .then(({ name, avatar, _id }) => {
+        setCurrentUser({ name, avatar, id: _id });
         setIsLoggedIn(true);
       })
       .catch((err) => {
@@ -155,12 +155,7 @@ function App() {
     if (!jwt) {
       return;
     }
-    getUserInfo(jwt)
-      .then(({ name, avatar }) => {
-        setIsLoggedIn(true);
-        setCurrentUser({ name, avatar });
-      })
-      .catch(console.error);
+    handleUserInfo({ token: jwt }).catch(console.error);
   }, []);
 
   useEffect(() => {

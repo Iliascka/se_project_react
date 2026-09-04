@@ -42,6 +42,11 @@
   cursor: pointer;
   transition: color 0.2s ease;
 }
+
+.modal__delete-button_hidden {
+  display: none;
+}
+
 .modal__delete-btn:hover {
   color: rgba(255, 77, 0, 0.7);
 }
