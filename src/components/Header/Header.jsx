@@ -5,6 +5,8 @@ import menuIcon from "../../assets/menu_icon.png";
 import MobileMenu from "./MobileMenu";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -20,6 +22,9 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <div
