@@ -120,6 +120,18 @@ function App() {
       .catch(console.error);
   };
 
+  const handleUserInfo = ({ token }) => {
+    return getUserInfo(token)
+      .then(({ name, avatar }) => {
+        setCurrentUser({ name, avatar });
+        setIsLoggedIn(true);
+      })
+      .catch((err) => {
+        console.error(err);
+        return Promise.reject(err);
+      });
+  };
+
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
@@ -129,8 +141,9 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
-          setIsLoggedIn(true);
-          closeModal();
+          return handleUserInfo({ token: data.token }).then(() => {
+            closeModal();
+          });
         }
       })
       .catch(console.error);
