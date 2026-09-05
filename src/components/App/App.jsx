@@ -83,6 +83,11 @@ function App() {
     setMobileMenu(false);
   };
 
+  const handleError = (err) => {
+    console.error(err);
+    return Promise.reject(err);
+  };
+
   const handleDeleteItem = (itemId) => {
     const jwt = getToken();
     if (!jwt) {
@@ -96,9 +101,7 @@ function App() {
         setClothingItems(updatedItems);
         closeModal();
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(handleError);
   };
 
   const onAddItem = (data) => {
@@ -123,7 +126,7 @@ function App() {
         handleLogin({ email, password });
         closeModal();
       })
-      .catch(console.error);
+      .catch(handleError);
   };
 
   const handleUserInfo = ({ token }) => {
@@ -132,17 +135,14 @@ function App() {
         setCurrentUser({ name, avatar, id: _id });
         setIsLoggedIn(true);
       })
-      .catch((err) => {
-        console.error(err);
-        return Promise.reject(err);
-      });
+      .catch(handleError);
   };
 
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
     }
-    auth
+    return auth
       .login({ email, password })
       .then((data) => {
         if (data.token) {
@@ -152,7 +152,22 @@ function App() {
           });
         }
       })
-      .catch(console.error);
+      .catch(handleError);
+  };
+
+  const handleUserUpdate = ({ name, avatar }) => {
+    if (!name || !avatar) {
+      return 0;
+    }
+    const token = getToken();
+    if (!token) return;
+    return auth
+      .update({ name, avatar, token })
+      .then(({ name, avatar }) => {
+        console.log(name);
+        setCurrentUser({ name, avatar });
+      })
+      .catch(handleError);
   };
 
   // Effects
@@ -263,6 +278,7 @@ function App() {
             <ProfileModal
               isOpen={activeModal === "edit-profile"}
               onClose={closeModal}
+              handleUserUpdate={handleUserUpdate}
             />
             <RegisterModal
               isOpen={activeModal === "signUp"}

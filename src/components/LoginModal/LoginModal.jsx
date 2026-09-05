@@ -36,8 +36,9 @@ const LoginModal = ({ isOpen, handleLogin, onClose }) => {
       return;
     }
 
-    handleLogin(values);
-    resetForm(defaultValues);
+    handleLogin(values).then(() => {
+      resetForm(defaultValues);
+    });
   }
 
   const showEmailError =

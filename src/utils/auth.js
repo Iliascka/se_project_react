@@ -24,3 +24,15 @@ export const login = ({ email, password }) => {
     body: JSON.stringify({ email, password }),
   }).then(handleServerResponse);
 };
+
+export const update = ({ name, avatar, token }) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar, token }),
+  }).then(handleServerResponse);
+};

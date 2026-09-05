@@ -4,14 +4,14 @@ import { useEffect, useMemo } from "react";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ProfileModal = ({ isOpen, handleProfile, onClose }) => {
+const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
   const { name, avatar } = useContext(CurrentUserContext);
   const defaultValues = useMemo(
     () => ({
       name: name,
       avatar: avatar,
     }),
-    [],
+    [name, avatar],
   );
 
   const {
@@ -39,15 +39,16 @@ const ProfileModal = ({ isOpen, handleProfile, onClose }) => {
       return;
     }
 
-    handleLogin(values);
-    resetForm(defaultValues);
+    handleUserUpdate(values).then(() => {
+      onClose();
+      resetForm(defaultValues);
+    });
   }
 
   const showNameError =
-    Boolean(errors.name) && (hasSubmitted || values.email.trim().length > 0);
+    Boolean(errors.name) && (hasSubmitted || values.name.trim().length > 0);
   const showAvatarError =
-    Boolean(errors.password) &&
-    (hasSubmitted || values.password.trim().length > 0);
+    Boolean(errors.avatar) && (hasSubmitted || values.avatar.trim().length > 0);
 
   return (
     <ModalWithForm
