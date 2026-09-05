@@ -50,7 +50,7 @@ const RegisterModal = ({ isOpen, handleRegistration, onClose }) => {
   const showPasswordError =
     Boolean(errors.password) &&
     (hasSubmitted || values.password.trim().length > 0);
-  const showavatarError =
+  const showAvatarError =
     Boolean(errors.avatar) && (hasSubmitted || values.avatar.trim().length > 0);
 
   return (
@@ -117,14 +117,14 @@ const RegisterModal = ({ isOpen, handleRegistration, onClose }) => {
         <input
           name="avatar"
           type="url"
-          className={`modal__input ${showavatarError ? "modal__input_type_error" : ""}`}
+          className={`modal__input ${showAvatarError ? "modal__input_type_error" : ""}`}
           id="avatar"
           placeholder="Avatar URL  "
           value={values.avatar}
           onChange={handleChange}
-          aria-invalid={showavatarError}
+          aria-invalid={showAvatarError}
         />
-        {showavatarError ? (
+        {showAvatarError ? (
           <span className="modal__error">{errors.avatar}</span>
         ) : null}
       </label>

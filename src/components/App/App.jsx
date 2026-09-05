@@ -16,6 +16,7 @@ import { getItems, addItem, deleteItem, getUserInfo } from "../../utils/api";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import ProfileModal from "../ProfileModal/ProfileModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import { setToken, getToken } from "../../utils/token";
@@ -253,6 +254,7 @@ function App() {
             ) : (
               <p className="weather-loading">Loading weather....</p>
             )}
+            <ProfileModal isOpen={""} />
             <RegisterModal
               isOpen={activeModal === "signUp"}
               onClose={closeModal}

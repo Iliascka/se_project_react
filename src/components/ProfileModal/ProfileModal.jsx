@@ -2,11 +2,11 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useEffect, useMemo } from "react";
 
-const LoginModal = ({ isOpen, handleLogin, onClose }) => {
+const ProfileModal = ({ isOpen, handleProfile, onClose }) => {
   const defaultValues = useMemo(
     () => ({
       email: "",
-      password: "",
+      avatar: "",
     }),
     [],
   );
@@ -40,57 +40,55 @@ const LoginModal = ({ isOpen, handleLogin, onClose }) => {
     resetForm(defaultValues);
   }
 
-  const showEmailError =
-    Boolean(errors.email) && (hasSubmitted || values.email.trim().length > 0);
-  const showPasswordError =
+  const showNameError =
+    Boolean(errors.name) && (hasSubmitted || values.email.trim().length > 0);
+  const showAvatarError =
     Boolean(errors.password) &&
     (hasSubmitted || values.password.trim().length > 0);
 
   return (
     <ModalWithForm
       name="add-garment"
-      title="Log in"
+      title="Change profile data"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Log in"
-      secondaryButtonText=" or Register"
-      buttonModifier="small"
+      buttonText="Save changes"
     >
       <label htmlFor="email" className="modal__label">
-        Email
+        Name *
         <input
-          name="email"
-          type="email"
-          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
-          id="email"
-          placeholder="Email"
-          value={values.email}
+          name="name"
+          type="text"
+          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
+          id="name"
+          placeholder="Name"
+          value={values.name}
           onChange={handleChange}
-          aria-invalid={showEmailError}
+          aria-invalid={showNameError}
         />
-        {showEmailError ? (
-          <span className="modal__error">{errors.email}</span>
+        {showNameError ? (
+          <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
-      <label htmlFor="password" className="modal__label">
-        Password
+      <label htmlFor="avatar" className="modal__label">
+        Avatar *
         <input
-          name="password"
-          type="password"
-          className={`modal__input ${showPasswordError ? "modal__input_type_error" : ""}`}
-          id="password"
-          placeholder="Password"
-          value={values.password}
+          name="avatar"
+          type="url"
+          className={`modal__input ${showAvatarError ? "modal__input_type_error" : ""}`}
+          id="avatar"
+          placeholder="Avatar URL  "
+          value={values.avatar}
           onChange={handleChange}
-          aria-invalid={showPasswordError}
+          aria-invalid={showAvatarError}
         />
-        {showPasswordError ? (
-          <span className="modal__error">{errors.password}</span>
+        {showAvatarError ? (
+          <span className="modal__error">{errors.avatar}</span>
         ) : null}
       </label>
     </ModalWithForm>
   );
 };
 
-export default LoginModal;
+export default ProfileModal;
