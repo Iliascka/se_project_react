@@ -1,12 +1,15 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useEffect, useMemo } from "react";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const ProfileModal = ({ isOpen, handleProfile, onClose }) => {
+  const { name, avatar } = useContext(CurrentUserContext);
   const defaultValues = useMemo(
     () => ({
-      email: "",
-      avatar: "",
+      name: name,
+      avatar: avatar,
     }),
     [],
   );

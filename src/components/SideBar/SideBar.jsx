@@ -3,9 +3,10 @@ import "./SideBar.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function SideBar({ isMobileMenuOpen }) {
+export default function SideBar({ isMobileMenuOpen, handleEditProfile }) {
   const { name, avatar } = useContext(CurrentUserContext);
   const avatarContent = avatar ? avatar : name.trim().toUpperCase().charAt(0);
+
   return (
     <aside className={`sidebar ${isMobileMenuOpen ? "sidebar_hidden" : ""}`}>
       <div className="sidebar__profile">
@@ -25,7 +26,11 @@ export default function SideBar({ isMobileMenuOpen }) {
             )}
           </div>
           <div className="sidebar__buttons">
-            <button type="button" className="sidebar__edit-button">
+            <button
+              type="button"
+              className="sidebar__edit-button"
+              onClick={handleEditProfile}
+            >
               Change Profile Data
             </button>
             <button type="button" className="sidebar__logout-button">

@@ -8,10 +8,14 @@ export default function Profile({
   weatherData,
   handleAddClick,
   isMobileMenuOpen,
+  handleEditProfile,
 }) {
   return (
     <section className="profile">
-      <SideBar isMobileMenuOpen={isMobileMenuOpen} />
+      <SideBar
+        isMobileMenuOpen={isMobileMenuOpen}
+        handleEditProfile={handleEditProfile}
+      />
       <ClothesSection
         weatherData={weatherData}
         handleCardClick={onCardClick}

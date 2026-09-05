@@ -60,6 +60,11 @@ function App() {
   const handleDeleteModal = () => {
     setActiveModal("confirm-delete");
   };
+
+  const handleEditProfile = () => {
+    setActiveModal("edit-profile");
+  };
+
   const closeModal = () => {
     setActiveModal("");
   };
@@ -244,6 +249,7 @@ function App() {
                           clothingItems={clothingItems}
                           onCardClick={handleCardClick}
                           handleAddClick={handleAddClick}
+                          handleEditProfile={handleEditProfile}
                           isMobileMenuOpen={isMobileMenuOpen}
                         />
                       </ProtectedRoute>
@@ -254,17 +260,18 @@ function App() {
             ) : (
               <p className="weather-loading">Loading weather....</p>
             )}
-            <ProfileModal isOpen={""} />
+            <ProfileModal
+              isOpen={activeModal === "edit-profile"}
+              onClose={closeModal}
+            />
             <RegisterModal
               isOpen={activeModal === "signUp"}
               onClose={closeModal}
-              onAddItem={onAddItem}
               handleRegistration={handleRegistration}
             />
             <LoginModal
               isOpen={activeModal === "logIn"}
               onClose={closeModal}
-              onAddItem={onAddItem}
               handleLogin={handleLogin}
             />
             <Footer />
