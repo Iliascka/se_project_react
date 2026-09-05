@@ -2,7 +2,7 @@ import "./ClothesSection.css";
 import ItemCard from "../Main//ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 export default function ClothesSection({
   clothingItems,
   handleCardClick,
@@ -12,6 +12,8 @@ export default function ClothesSection({
   isMobileMenuOpen,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const { id } = useContext(CurrentUserContext);
+
   return (
     <section className="clothes-section">
       <div className="clothes-section__row">
@@ -36,15 +38,17 @@ export default function ClothesSection({
         )}
       </div>
       <ul className="clothes-section__list">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={handleCardClick}
-            />
-          );
-        })}
+        {clothingItems
+          .filter((item) => item.owner === id)
+          .map((item) => {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={handleCardClick}
+              />
+            );
+          })}
       </ul>
     </section>
   );
