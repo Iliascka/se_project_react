@@ -33,18 +33,31 @@
 
 .sidebar__profile {
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
   margin: 0;
   padding: 20px 0;
+  width: 300px;
 }
 
-.sidebar__user-info {
+.sidebar__buttons {
   display: flex;
   flex-direction: column;
   align-items: start;
   gap: 8px;
+}
+
+.sidebar__profile-info {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+  margin: 0 0 24px 0;
+}
+.sidebar__user-container {
+  display: contents;
 }
 
 .sidebar__edit-button,
@@ -67,6 +80,12 @@
   }
   .sidebar__profile {
     justify-content: center;
+    align-items: center;
+  }
+  .sidebar__user-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 }
 

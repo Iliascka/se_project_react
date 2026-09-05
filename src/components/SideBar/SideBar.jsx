@@ -9,26 +9,30 @@ export default function SideBar({ isMobileMenuOpen }) {
   return (
     <aside className={`sidebar ${isMobileMenuOpen ? "sidebar_hidden" : ""}`}>
       <div className="sidebar__profile">
-        <div className="sidebar__user-info">
-          <p className="sidebar__username">{name} </p>
-          <button type="button" className="sidebar__edit-button">
-            Change Profile Data
-          </button>
-          <button type="button" className="sidebar__logout-button">
-            Log out
-          </button>
+        <div className="sidebar__user-container">
+          <div className="sidebar__profile-info">
+            <p className="sidebar__username">{name} </p>
+            {avatar ? (
+              <img
+                src={avatarContent}
+                alt="user-avatar"
+                className="sidebar__avatar"
+              />
+            ) : (
+              <span className="sidebar__avatar sidebar__avatar_none">
+                {avatarContent}
+              </span>
+            )}
+          </div>
+          <div className="sidebar__buttons">
+            <button type="button" className="sidebar__edit-button">
+              Change Profile Data
+            </button>
+            <button type="button" className="sidebar__logout-button">
+              Log out
+            </button>
+          </div>
         </div>
-        {avatar ? (
-          <img
-            src={avatarContent}
-            alt="user-avatar"
-            className="sidebar__avatar"
-          />
-        ) : (
-          <span className="sidebar__avatar sidebar__avatar_none">
-            {avatarContent}
-          </span>
-        )}
       </div>
     </aside>
   );
