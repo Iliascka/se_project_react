@@ -44,8 +44,8 @@ export const getUserInfo = (token) => {
   }).then(handleServerResponse);
 };
 
-export const addCardLike = ({ itemId, token }) => {
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+export const addCardLike = ({ _id, token }) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -53,8 +53,8 @@ export const addCardLike = ({ itemId, token }) => {
     },
   }).then(handleServerResponse);
 };
-export const removeCardLike = ({ itemId, token }) => {
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+export const removeCardLike = ({ _id, token }) => {
+  return fetch(`${baseUrl}/items/${_id}/likes`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

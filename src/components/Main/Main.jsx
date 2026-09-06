@@ -3,10 +3,11 @@ import "./Main.css";
 
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
   const filteredClothingItems = clothingItems.filter((item) => {
     return item.weather === weatherData.type;
   });
+
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -15,6 +16,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
         clothingItems={filteredClothingItems}
         handleCardClick={handleCardClick}
         weatherData={weatherData}
+        onCardLike={onCardLike}
         isProfile={false}
       >
         {" "}

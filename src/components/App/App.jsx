@@ -12,7 +12,14 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { Routes, Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
-import { getItems, addItem, deleteItem, getUserInfo } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  getUserInfo,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -42,6 +49,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
   const [isMobileMenuOpen, setMobileMenu] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   //Handlers
   const handleToggleSwitchChange = () => {
@@ -129,15 +137,6 @@ function App() {
       .catch(handleError);
   };
 
-  const handleUserInfo = ({ token }) => {
-    return getUserInfo(token)
-      .then(({ name, avatar, _id }) => {
-        setCurrentUser({ name, avatar, id: _id });
-        setIsLoggedIn(true);
-      })
-      .catch(handleError);
-  };
-
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
@@ -155,6 +154,15 @@ function App() {
       .catch(handleError);
   };
 
+  const handleUserInfo = ({ token }) => {
+    return getUserInfo(token)
+      .then(({ name, avatar, _id }) => {
+        setCurrentUser({ name, avatar, id: _id });
+        setIsLoggedIn(true);
+      })
+      .catch(handleError);
+  };
+
   const handleUserUpdate = ({ name, avatar }) => {
     if (!name || !avatar) {
       return 0;
@@ -167,6 +175,25 @@ function App() {
         setCurrentUser({ name, avatar });
       })
       .catch(handleError);
+  };
+
+  const handleCardLike = ({ _id, isLiked }) => {
+    const token = getToken();
+    !isLiked
+      ? addCardLike({ _id, token })
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item)),
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike({ _id, token })
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item)),
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   // Effects
@@ -247,6 +274,7 @@ function App() {
                     path="/"
                     element={
                       <Main
+                        onCardLike={handleCardLike}
                         weatherData={weatherData}
                         handleCardClick={handleCardClick}
                         clothingItems={clothingItems}
@@ -265,6 +293,7 @@ function App() {
                           handleAddClick={handleAddClick}
                           handleEditProfile={handleEditProfile}
                           isMobileMenuOpen={isMobileMenuOpen}
+                          onCardLike={handleCardLike}
                         />
                       </ProtectedRoute>
                     }

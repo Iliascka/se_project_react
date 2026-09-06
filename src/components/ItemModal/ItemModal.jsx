@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 import closeBtn from "../../assets/closeBtnWhite.png";
-import   from "../../assets/closeBtnDark.png";
+import closeBtnDark from "../../assets/closeBtnDark.png";
 import "../ModalWithForm/ModalWithForm.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";

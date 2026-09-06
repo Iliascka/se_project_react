@@ -1,6 +1,8 @@
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 import "./Profile.css";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Profile({
   clothingItems,
@@ -9,7 +11,10 @@ export default function Profile({
   handleAddClick,
   isMobileMenuOpen,
   handleEditProfile,
+  onCardLike,
 }) {
+  const { id } = useContext(CurrentUserContext);
+  const ownClothingItems = clothingItems.filter((item) => item.owner === id);
   return (
     <section className="profile">
       <SideBar
@@ -19,10 +24,11 @@ export default function Profile({
       <ClothesSection
         weatherData={weatherData}
         handleCardClick={onCardClick}
-        clothingItems={clothingItems}
+        clothingItems={ownClothingItems}
         handleAddClick={handleAddClick}
         isProfile={true}
         isMobileMenuOpen={isMobileMenuOpen}
+        onCardLike={onCardLike}
       />
     </section>
   );

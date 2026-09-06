@@ -10,6 +10,7 @@ export default function ClothesSection({
   isProfile,
   handleAddClick,
   isMobileMenuOpen,
+  onCardLike,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const { id } = useContext(CurrentUserContext);
@@ -38,17 +39,16 @@ export default function ClothesSection({
         )}
       </div>
       <ul className="clothes-section__list">
-        {clothingItems
-          .filter((item) => item.owner === id)
-          .map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onCardClick={handleCardClick}
-              />
-            );
-          })}
+        {clothingItems.map((item) => {
+          return (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onCardClick={handleCardClick}
+              onCardLike={onCardLike}
+            />
+          );
+        })}
       </ul>
     </section>
   );
