@@ -43,3 +43,22 @@ export const getUserInfo = (token) => {
     },
   }).then(handleServerResponse);
 };
+
+export const addCardLike = ({ itemId, token }) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
+export const removeCardLike = ({ itemId, token }) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(handleServerResponse);
+};
