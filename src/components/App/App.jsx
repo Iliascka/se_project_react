@@ -164,7 +164,6 @@ function App() {
     return auth
       .update({ name, avatar, token })
       .then(({ name, avatar }) => {
-        console.log(name);
         setCurrentUser({ name, avatar });
       })
       .catch(handleError);

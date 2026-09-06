@@ -3,6 +3,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .card__name {
@@ -22,6 +23,19 @@
   width: 100%;
   border-radius: 19px;
   cursor: pointer;
+}
+
+.card__like-btn {
+  position: absolute;
+  top: 20px;
+  right: 102px;
+  border: none;
+  background-color: transparent;
+}
+
+.card__like-icon {
+  width: 18px;
+  height: 15px;
 }
 
 @media screen and (max-width: 628px) {
