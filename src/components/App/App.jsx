@@ -294,6 +294,7 @@ function App() {
                           handleEditProfile={handleEditProfile}
                           isMobileMenuOpen={isMobileMenuOpen}
                           onCardLike={handleCardLike}
+                          setIsLoggedIn={setIsLoggedIn}
                         />
                       </ProtectedRoute>
                     }

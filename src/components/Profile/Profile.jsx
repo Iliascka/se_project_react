@@ -12,6 +12,7 @@ export default function Profile({
   isMobileMenuOpen,
   handleEditProfile,
   onCardLike,
+  setIsLoggedIn,
 }) {
   const { id } = useContext(CurrentUserContext);
   const ownClothingItems = clothingItems.filter((item) => item.owner === id);
@@ -20,6 +21,7 @@ export default function Profile({
       <SideBar
         isMobileMenuOpen={isMobileMenuOpen}
         handleEditProfile={handleEditProfile}
+        setIsLoggedIn={setIsLoggedIn}
       />
       <ClothesSection
         weatherData={weatherData}

@@ -1,11 +1,19 @@
 import "./SideBar.css";
-// import avatarDefault from "../../assets/avatar.png";
+import { removeToken } from "../../utils//token";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function SideBar({ isMobileMenuOpen, handleEditProfile }) {
+export default function SideBar({
+  isMobileMenuOpen,
+  handleEditProfile,
+  setIsLoggedIn,
+}) {
   const { name, avatar } = useContext(CurrentUserContext);
   const avatarContent = avatar ? avatar : name.trim().toUpperCase().charAt(0);
+  const handleSignout = () => {
+    removeToken();
+    setIsLoggedIn(false);
+  };
 
   return (
     <aside className={`sidebar ${isMobileMenuOpen ? "sidebar_hidden" : ""}`}>
@@ -33,7 +41,11 @@ export default function SideBar({ isMobileMenuOpen, handleEditProfile }) {
             >
               Change Profile Data
             </button>
-            <button type="button" className="sidebar__logout-button">
+            <button
+              onClick={handleSignout}
+              type="button"
+              className="sidebar__logout-button"
+            >
               Log out
             </button>
           </div>
