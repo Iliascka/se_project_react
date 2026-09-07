@@ -3,9 +3,9 @@ import likeBtnOutline from "../../../assets/LikeBtnOutline.png";
 import likeBtnFill from "../../../assets/LikeBtnFill.png";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
-function ItemCard({ item, onCardClick, onCardLike }) {
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   const { id } = useContext(CurrentUserContext);
-  const isLiked = item.likes.some((userId) => userId === id);
+  const isLiked = isLoggedIn && item.likes.some((userId) => userId === id);
   const itemLikeButtonClassName = isLiked ? likeBtnFill : likeBtnOutline;
 
   const handleCardClick = () => {

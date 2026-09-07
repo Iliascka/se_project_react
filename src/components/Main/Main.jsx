@@ -3,7 +3,13 @@ import "./Main.css";
 
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  onCardLike,
+  isLoggedIn,
+}) {
   const filteredClothingItems = clothingItems.filter((item) => {
     return item.weather === weatherData.type;
   });
@@ -18,6 +24,7 @@ function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
         weatherData={weatherData}
         onCardLike={onCardLike}
         isProfile={false}
+        isLoggedIn={isLoggedIn}
       >
         {" "}
       </ClothesSection>

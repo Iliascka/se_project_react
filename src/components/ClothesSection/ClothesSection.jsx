@@ -11,6 +11,7 @@ export default function ClothesSection({
   handleAddClick,
   isMobileMenuOpen,
   onCardLike,
+  isLoggedIn,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
@@ -45,6 +46,7 @@ export default function ClothesSection({
               item={item}
               onCardClick={handleCardClick}
               onCardLike={onCardLike}
+              isLoggedIn={isLoggedIn}
             />
           );
         })}
