@@ -17,6 +17,10 @@ A weather-based clothing recommendation app that suggests what to wear depending
 - CSS
 - Vite
 
+## BackEnd Repository
+
+[WTWR Backend](https://github.com/Iliascka/se_project_express.git)
+
 ## Project Preview
 
 Coming soon
