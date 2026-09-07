@@ -7,8 +7,6 @@
 }
 
 .card__name {
-  position: absolute;
-  top: 15px;
   margin: 0;
   color: rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 1);
@@ -19,6 +17,14 @@
   font-size: 16px;
 }
 
+.card__header {
+  position: absolute;
+  top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .card__image {
   width: 100%;
   border-radius: 19px;
@@ -26,9 +32,7 @@
 }
 
 .card__like-btn {
-  position: absolute;
-  top: 20px;
-  right: 102px;
+  margin: 5px 0 0 0;
   border: none;
   background-color: transparent;
 }
@@ -49,5 +53,9 @@
 
   .card__name {
     top: 7px;
+  }
+
+  .card__header {
+    top: 8px;
   }
 }

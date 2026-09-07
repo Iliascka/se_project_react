@@ -13,8 +13,16 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     [],
   );
 
-  const { values, errors, hasSubmitted, setHasSubmitted, handleChange, resetForm, validateForm } =
-    useFormWithValidation(defaultValues);
+  const {
+    values,
+    errors,
+    hasSubmitted,
+    setHasSubmitted,
+    handleChange,
+    resetForm,
+    validateForm,
+    isValid,
+  } = useFormWithValidation(defaultValues);
 
   useEffect(() => {
     if (isOpen) {
@@ -52,6 +60,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Add garment"
+      isValid={isValid}
     >
       <label htmlFor="name" className="modal__label">
         Name

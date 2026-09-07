@@ -313,11 +313,13 @@ function App() {
               isOpen={activeModal === "signUp"}
               onClose={closeModal}
               handleRegistration={handleRegistration}
+              handleLoginModal={handleLoginModal}
             />
             <LoginModal
               isOpen={activeModal === "logIn"}
               onClose={closeModal}
               handleLogin={handleLogin}
+              handleSignUp={handleSignUp}
             />
             <Footer />
           </div>

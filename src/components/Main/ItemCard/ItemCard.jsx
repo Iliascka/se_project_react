@@ -17,10 +17,16 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 
   return (
     <li className="card">
-      <h2 className="card__name"> {item.name}</h2>
-      <button onClick={handleLike} className="card__like-btn">
-        <img src={itemLikeButtonClassName} alt="" className="card__like-icon" />
-      </button>
+      <div className="card__header">
+        <h2 className="card__name"> {item.name}</h2>
+        <button onClick={handleLike} className="card__like-btn">
+          <img
+            src={itemLikeButtonClassName}
+            alt=""
+            className="card__like-icon"
+          />
+        </button>
+      </div>
 
       <img
         onClick={handleCardClick}

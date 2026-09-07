@@ -69,6 +69,12 @@
   color: rgba(0, 0, 0, 1);
   background-color: transparent;
   border: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+.sidebar__edit-button:hover,
+.sidebar__logout-button:hover {
+  color: rgba(0, 0, 0, 0.657);
 }
 
 @media screen and (max-width: 800px) {

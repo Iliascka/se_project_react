@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useEffect, useMemo } from "react";
 
-const LoginModal = ({ isOpen, handleLogin, onClose }) => {
+const LoginModal = ({ isOpen, handleLogin, onClose, handleSignUp }) => {
   const defaultValues = useMemo(
     () => ({
       email: "",
@@ -19,6 +19,7 @@ const LoginModal = ({ isOpen, handleLogin, onClose }) => {
     handleChange,
     resetForm,
     validateForm,
+    isValid,
   } = useFormWithValidation(defaultValues);
 
   useEffect(() => {
@@ -55,8 +56,10 @@ const LoginModal = ({ isOpen, handleLogin, onClose }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Log in"
-      secondaryButtonText=" or Register"
+      secondaryButtonText="or Sign Up"
       buttonModifier="small"
+      isValid={isValid}
+      onSecondaryButtonClick={handleSignUp}
     >
       <label htmlFor="email" className="modal__label">
         Email

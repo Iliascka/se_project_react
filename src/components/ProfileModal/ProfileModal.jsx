@@ -22,6 +22,7 @@ const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
     handleChange,
     resetForm,
     validateForm,
+    isValid,
   } = useFormWithValidation(defaultValues);
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Save changes"
+      isValid={isValid}
     >
       <label htmlFor="email" className="modal__label">
         Name *
