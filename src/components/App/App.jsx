@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -49,7 +49,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
   const [isMobileMenuOpen, setMobileMenu] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
 
   //Handlers
   const handleToggleSwitchChange = () => {
@@ -91,10 +90,10 @@ function App() {
     setMobileMenu(false);
   };
 
-  const handleError = (err) => {
+  const handleError = useCallback((err) => {
     console.error(err);
     return Promise.reject(err);
-  };
+  }, []);
 
   const handleDeleteItem = (itemId) => {
     const jwt = getToken();
@@ -154,14 +153,17 @@ function App() {
       .catch(handleError);
   };
 
-  const handleUserInfo = ({ token }) => {
-    return getUserInfo(token)
-      .then(({ name, avatar, _id }) => {
-        setCurrentUser({ name, avatar, id: _id });
-        setIsLoggedIn(true);
-      })
-      .catch(handleError);
-  };
+  const handleUserInfo = useCallback(
+    ({ token }) => {
+      return getUserInfo(token)
+        .then(({ name, avatar, _id }) => {
+          setCurrentUser({ name, avatar, id: _id });
+          setIsLoggedIn(true);
+        })
+        .catch(handleError);
+    },
+    [handleError],
+  );
 
   const handleUserUpdate = ({ name, avatar }) => {
     if (!name || !avatar) {
@@ -171,8 +173,8 @@ function App() {
     if (!token) return;
     return auth
       .update({ name, avatar, token })
-      .then(({ name, avatar }) => {
-        setCurrentUser({ name, avatar });
+      .then(({ name, avatar, _id }) => {
+        setCurrentUser({ name, avatar, id: _id });
       })
       .catch(handleError);
   };
@@ -203,7 +205,7 @@ function App() {
       return;
     }
     handleUserInfo({ token: jwt }).catch(console.error);
-  }, []);
+  }, [handleUserInfo]);
 
   useEffect(() => {
     (navigator.geolocation.getCurrentPosition((position) => {

@@ -1,5 +1,4 @@
 import "./Header.css";
-import avatar from "../../assets/avatar.png";
 import logo from "../../assets/logo.svg";
 import menuIcon from "../../assets/menu_icon.png";
 import MobileMenu from "./MobileMenu";

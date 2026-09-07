@@ -13,7 +13,6 @@ function ModalWithForm({
   secondaryButtonText,
   buttonModifier,
   isValid,
-  handleSignUp,
   onSecondaryButtonClick,
 }) {
   return (
