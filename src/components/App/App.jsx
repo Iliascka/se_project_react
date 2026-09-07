@@ -298,6 +298,7 @@ function App() {
                           isMobileMenuOpen={isMobileMenuOpen}
                           onCardLike={handleCardLike}
                           setIsLoggedIn={setIsLoggedIn}
+                          isLoggedIn={isLoggedIn}
                         />
                       </ProtectedRoute>
                     }
