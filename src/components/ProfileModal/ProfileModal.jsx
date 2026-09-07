@@ -61,13 +61,13 @@ const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
       buttonText="Save changes"
       isValid={isValid}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="profile-name" className="modal__label">
         Name *
         <input
           name="name"
           type="text"
           className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
-          id="name"
+          id="profile-name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
@@ -77,13 +77,13 @@ const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
           <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="profile-avatar" className="modal__label">
         Avatar *
         <input
           name="avatar"
           type="url"
           className={`modal__input ${showAvatarError ? "modal__input_type_error" : ""}`}
-          id="avatar"
+          id="profile-avatar"
           placeholder="Avatar URL  "
           value={values.avatar}
           onChange={handleChange}

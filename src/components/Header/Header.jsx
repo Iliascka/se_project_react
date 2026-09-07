@@ -84,6 +84,9 @@ function Header({
         <MobileMenu
           handleAddClick={handleAddClick}
           onMobileMenuClose={onMobileMenuClose}
+          isLoggedIn={isLoggedIn}
+          handleSignUp={handleSignUp}
+          handleLoginModal={handleLoginModal}
         />
       )}
     </header>

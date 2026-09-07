@@ -11,7 +11,7 @@ function ItemModal({ isOpen, onClose, card, deleteModal }) {
   const itemDeleteButtonClassName = `modal__delete-btn ${isOwn ? "" : "modal__delete-button_hidden"}`;
 
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`} onClick={onClose}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`} onClick={onClose}>
       <div
         className="modal__content modal__content_type_image"
         onClick={(e) => e.stopPropagation()}

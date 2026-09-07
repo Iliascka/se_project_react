@@ -6,7 +6,7 @@ function ConfirmDeleteModal({ isOpen, onDelete, card, onClose }) {
     onDelete(card._id);
   };
   return (
-    <div className={`modal ${isOpen && "modal_opened"}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="confirm-modal" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="confirm-modal__close">
           <img

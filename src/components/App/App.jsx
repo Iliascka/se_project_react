@@ -5,11 +5,11 @@ import Main from "../Main/Main";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { APIkey } from "../../utils/constant";
+import { apiKey } from "../../utils/constant";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { useLocation } from "react-router-dom";
 import {
@@ -30,6 +30,7 @@ import { setToken, getToken } from "../../utils/token";
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isProfile = location.pathname === "/profile";
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -114,7 +115,7 @@ function App() {
   const onAddItem = (data) => {
     const jwt = getToken();
     if (!jwt) {
-      return;
+      return Promise.resolve();
     }
     return addItem(data, jwt)
       .then((item) => {
@@ -147,6 +148,7 @@ function App() {
           setToken(data.token);
           return handleUserInfo({ token: data.token }).then(() => {
             closeModal();
+            navigate("/");
           });
         }
       })
@@ -208,31 +210,37 @@ function App() {
   }, [handleUserInfo]);
 
   useEffect(() => {
-    (navigator.geolocation.getCurrentPosition((position) => {
-      setCoordinates({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    }),
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCoordinates({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
       (error) => {
         console.error(error);
-      });
+        setIsWeatherDataLoaded(true);
+      },
+    );
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems([...data].reverse());
+      })
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
     if (!coordinates) {
       return;
     }
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
         setIsWeatherDataLoaded(true);
-      })
-      .catch(console.error);
-    getItems()
-      .then((data) => {
-        setClothingItems([...data].reverse());
       })
       .catch(console.error);
   }, [coordinates]);

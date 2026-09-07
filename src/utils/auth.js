@@ -10,7 +10,7 @@ const handleServerResponse = (res) => {
 const headers = { "Content-Type": "application/json" };
 
 export const register = ({ name, avatar, email, password }) => {
-  return fetch(`${baseUrl}/signUp`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers,
     body: JSON.stringify({ name, avatar, email, password }),

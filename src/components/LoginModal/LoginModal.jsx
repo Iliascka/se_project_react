@@ -61,13 +61,13 @@ const LoginModal = ({ isOpen, handleLogin, onClose, handleSignUp }) => {
       isValid={isValid}
       onSecondaryButtonClick={handleSignUp}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email
         <input
           name="email"
           type="email"
           className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
-          id="email"
+          id="login-email"
           placeholder="Email"
           value={values.email}
           onChange={handleChange}
@@ -77,13 +77,13 @@ const LoginModal = ({ isOpen, handleLogin, onClose, handleSignUp }) => {
           <span className="modal__error">{errors.email}</span>
         ) : null}
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password
         <input
           name="password"
           type="password"
           className={`modal__input ${showPasswordError ? "modal__input_type_error" : ""}`}
-          id="password"
+          id="login-password"
           placeholder="Password"
           value={values.password}
           onChange={handleChange}

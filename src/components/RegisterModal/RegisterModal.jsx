@@ -72,13 +72,13 @@ const RegisterModal = ({
       isValid={isValid}
       onSecondaryButtonClick={handleLoginModal}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email*
         <input
           name="email"
           type="email"
           className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
-          id="email"
+          id="register-email"
           placeholder="Email"
           value={values.email}
           onChange={handleChange}
@@ -88,13 +88,13 @@ const RegisterModal = ({
           <span className="modal__error">{errors.email}</span>
         ) : null}
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password*
         <input
           name="password"
           type="password"
           className={`modal__input ${showPasswordError ? "modal__input_type_error" : ""}`}
-          id="password"
+          id="register-password"
           placeholder="Password"
           value={values.password}
           onChange={handleChange}
@@ -104,13 +104,13 @@ const RegisterModal = ({
           <span className="modal__error">{errors.password}</span>
         ) : null}
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           name="name"
           type="text"
           className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
-          id="name"
+          id="register-name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
@@ -120,13 +120,13 @@ const RegisterModal = ({
           <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Avatar
         <input
           name="avatar"
           type="url"
           className={`modal__input ${showAvatarError ? "modal__input_type_error" : ""}`}
-          id="avatar"
+          id="register-avatar"
           placeholder="Avatar URL  "
           value={values.avatar}
           onChange={handleChange}

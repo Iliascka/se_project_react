@@ -12,6 +12,9 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
     onCardClick(item);
   };
   const handleLike = () => {
+    if (!isLoggedIn) {
+      return;
+    }
     onCardLike({ _id: item._id, isLiked });
   };
 
@@ -19,13 +22,15 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
     <li className="card">
       <div className="card__header">
         <h2 className="card__name"> {item.name}</h2>
-        <button onClick={handleLike} className="card__like-btn">
-          <img
-            src={itemLikeButtonClassName}
-            alt=""
-            className="card__like-icon"
-          />
-        </button>
+        {isLoggedIn && (
+          <button onClick={handleLike} className="card__like-btn">
+            <img
+              src={itemLikeButtonClassName}
+              alt=""
+              className="card__like-icon"
+            />
+          </button>
+        )}
       </div>
 
       <img
