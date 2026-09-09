@@ -14,6 +14,7 @@ function ModalWithForm({
   buttonModifier,
   isValid,
   onSecondaryButtonClick,
+  isLoading,
 }) {
   return (
     <div className={`modal  ${isOpen ? "modal_opened" : ""}`} onClick={onClose}>
@@ -35,7 +36,7 @@ function ModalWithForm({
           <div className="modal__submit-container">
             <button
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || isLoading}
               className={`modal__submit ${buttonModifier === "small" ? "modal__submit_type_small" : ""}`}
             >
               {buttonText}

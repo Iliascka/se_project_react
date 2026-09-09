@@ -4,7 +4,7 @@ import { useEffect, useMemo } from "react";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
+const ProfileModal = ({ isOpen, handleUserUpdate, onClose, isLoading }) => {
   const { name, avatar } = useContext(CurrentUserContext);
   const defaultValues = useMemo(
     () => ({
@@ -58,8 +58,9 @@ const ProfileModal = ({ isOpen, handleUserUpdate, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Save changes"
+      buttonText={isLoading ? "Saving..." : "Save changes"}
       isValid={isValid}
+      isLoading={isLoading}
     >
       <label htmlFor="profile-name" className="modal__label">
         Name *

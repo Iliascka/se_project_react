@@ -3,7 +3,7 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import "./AddItemModal.css";
 import { useEffect, useMemo } from "react";
 
-const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
+const AddItemModal = ({ isOpen, onAddItem, onClose, isLoading }) => {
   const defaultValues = useMemo(
     () => ({
       name: "",
@@ -59,8 +59,9 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       isValid={isValid}
+      isLoading={isLoading}
     >
       <label htmlFor="additem-name" className="modal__label">
         Name

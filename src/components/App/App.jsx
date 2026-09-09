@@ -50,6 +50,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({ name: "", avatar: "" });
   const [isMobileMenuOpen, setMobileMenu] = useState(false);
+  const [loadingModal, setLoadingModal] = useState("");
 
   //Handlers
   const handleToggleSwitchChange = () => {
@@ -80,6 +81,7 @@ function App() {
   const handleSignUp = () => {
     setActiveModal("signUp");
   };
+
   const handleLoginModal = () => {
     setActiveModal("logIn");
   };
@@ -87,6 +89,7 @@ function App() {
   const handleMobileMenuOpen = () => {
     setMobileMenu(true);
   };
+
   const handleMobileMenuClose = () => {
     setMobileMenu(false);
   };
@@ -101,6 +104,7 @@ function App() {
     if (!jwt) {
       return;
     }
+
     return deleteItem({ itemId }, jwt)
       .then(() => {
         const updatedItems = clothingItems.filter(
@@ -117,6 +121,8 @@ function App() {
     if (!jwt) {
       return Promise.resolve();
     }
+    setLoadingModal("add-garment");
+
     return addItem(data, jwt)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
@@ -124,23 +130,30 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setLoadingModal("");
       });
   };
 
   const handleRegistration = ({ name, avatar, email, password }) => {
+    setLoadingModal("signUp");
     return auth
       .register({ email, password, name, avatar })
       .then(() => {
-        handleLogin({ email, password });
-        closeModal();
+        return handleLogin({ email, password, loadingType: "signUp" });
       })
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => {
+        setLoadingModal("");
+      });
   };
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password, loadingType = "logIn" }) => {
     if (!email || !password) {
       return;
     }
+    setLoadingModal(loadingType);
     return auth
       .login({ email, password })
       .then((data) => {
@@ -152,7 +165,10 @@ function App() {
           });
         }
       })
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => {
+        setLoadingModal("");
+      });
   };
 
   const handleUserInfo = useCallback(
@@ -173,12 +189,16 @@ function App() {
     }
     const token = getToken();
     if (!token) return;
+    setLoadingModal("edit-profile");
     return auth
       .update({ name, avatar, token })
       .then(({ name, avatar, _id }) => {
         setCurrentUser({ name, avatar, id: _id });
       })
-      .catch(handleError);
+      .catch(handleError)
+      .finally(() => {
+        setLoadingModal("");
+      });
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
@@ -318,17 +338,20 @@ function App() {
             )}
             <ProfileModal
               isOpen={activeModal === "edit-profile"}
+              isLoading={loadingModal === "edit-profile"}
               onClose={closeModal}
               handleUserUpdate={handleUserUpdate}
             />
             <RegisterModal
               isOpen={activeModal === "signUp"}
+              isLoading={loadingModal === "signUp"}
               onClose={closeModal}
               handleRegistration={handleRegistration}
               handleLoginModal={handleLoginModal}
             />
             <LoginModal
               isOpen={activeModal === "logIn"}
+              isLoading={loadingModal === "logIn"}
               onClose={closeModal}
               handleLogin={handleLogin}
               handleSignUp={handleSignUp}
@@ -346,6 +369,7 @@ function App() {
             ></ConfirmDeleteModal>
             <AddItemModal
               isOpen={activeModal === "add-garment"}
+              isLoading={loadingModal === "add-garment"}
               onClose={closeModal}
               onAddItem={onAddItem}
             ></AddItemModal>

@@ -7,6 +7,7 @@ const RegisterModal = ({
   handleRegistration,
   onClose,
   handleLoginModal,
+  isLoading,
 }) => {
   const defaultValues = useMemo(
     () => ({
@@ -66,11 +67,12 @@ const RegisterModal = ({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText="Sign Up"
+      buttonText={isLoading ? "Signing up..." : "Sign Up"}
       secondaryButtonText="or Log in"
       buttonModifier="small"
       isValid={isValid}
       onSecondaryButtonClick={handleLoginModal}
+      isLoading={isLoading}
     >
       <label htmlFor="register-email" className="modal__label">
         Email*
