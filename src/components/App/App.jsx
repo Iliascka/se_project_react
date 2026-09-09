@@ -99,21 +99,31 @@ function App() {
     return Promise.reject(err);
   }, []);
 
+  const handleSubmit = (request, modalName) => {
+    setLoadingModal(modalName);
+    return request()
+      .then(() => {
+        closeModal();
+      })
+      .catch(handleError)
+      .finally(() => {
+        setLoadingModal("");
+      });
+  };
+
   const handleDeleteItem = (itemId) => {
     const jwt = getToken();
     if (!jwt) {
       return;
     }
-
-    return deleteItem({ itemId }, jwt)
-      .then(() => {
-        const updatedItems = clothingItems.filter(
-          (item) => item._id !== itemId,
+    const makeRequest = () => {
+      return deleteItem({ itemId }, jwt).then(() => {
+        setClothingItems((clothingItems) =>
+          clothingItems.filter((item) => item._id !== itemId),
         );
-        setClothingItems(updatedItems);
-        closeModal();
-      })
-      .catch(handleError);
+      });
+    };
+    return handleSubmit(makeRequest, "confirm-delete");
   };
 
   const onAddItem = (data) => {
@@ -121,54 +131,42 @@ function App() {
     if (!jwt) {
       return Promise.resolve();
     }
-    setLoadingModal("add-garment");
 
-    return addItem(data, jwt)
-      .then((item) => {
-        setClothingItems([item, ...clothingItems]);
-        closeModal();
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
-        setLoadingModal("");
+    const makeRequest = () => {
+      return addItem(data, jwt).then((item) => {
+        setClothingItems((clothingItems) => {
+          return [item, ...clothingItems];
+        });
       });
+    };
+    return handleSubmit(makeRequest, "add-garment");
   };
 
   const handleRegistration = ({ name, avatar, email, password }) => {
-    setLoadingModal("signUp");
-    return auth
-      .register({ email, password, name, avatar })
-      .then(() => {
+    const makeRequest = () => {
+      return auth.register({ email, password, name, avatar }).then(() => {
         return handleLogin({ email, password, loadingType: "signUp" });
-      })
-      .catch(handleError)
-      .finally(() => {
-        setLoadingModal("");
       });
+    };
+    return handleSubmit(makeRequest, "signUp");
   };
 
   const handleLogin = ({ email, password, loadingType = "logIn" }) => {
     if (!email || !password) {
       return;
     }
-    setLoadingModal(loadingType);
-    return auth
-      .login({ email, password })
-      .then((data) => {
+
+    const makeRequest = () => {
+      return auth.login({ email, password }).then((data) => {
         if (data.token) {
           setToken(data.token);
           return handleUserInfo({ token: data.token }).then(() => {
-            closeModal();
             navigate("/");
           });
         }
-      })
-      .catch(handleError)
-      .finally(() => {
-        setLoadingModal("");
       });
+    };
+    return handleSubmit(makeRequest, loadingType);
   };
 
   const handleUserInfo = useCallback(
@@ -189,16 +187,15 @@ function App() {
     }
     const token = getToken();
     if (!token) return;
-    setLoadingModal("edit-profile");
-    return auth
-      .update({ name, avatar, token })
-      .then(({ name, avatar, _id }) => {
-        setCurrentUser({ name, avatar, id: _id });
-      })
-      .catch(handleError)
-      .finally(() => {
-        setLoadingModal("");
-      });
+
+    const makeRequest = () => {
+      return auth
+        .update({ name, avatar, token })
+        .then(({ name, avatar, _id }) => {
+          setCurrentUser({ name, avatar, id: _id });
+        });
+    };
+    return handleSubmit(makeRequest, "edit-profile");
   };
 
   const handleCardLike = ({ _id, isLiked }) => {
@@ -363,6 +360,7 @@ function App() {
           >
             <ConfirmDeleteModal
               isOpen={activeModal === "confirm-delete"}
+              isLoading={loadingModal === "confirm-delete"}
               onDelete={handleDeleteItem}
               card={selectedCard}
               onClose={closeModal}

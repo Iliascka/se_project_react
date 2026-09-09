@@ -1,7 +1,7 @@
 import "./ConfirmDeleteModal.css";
 import closeBtn from "../../assets/closeBtnGrey.png";
 
-function ConfirmDeleteModal({ isOpen, onDelete, card, onClose }) {
+function ConfirmDeleteModal({ isOpen, onDelete, card, onClose, isLoading }) {
   const handleDeleteClick = () => {
     onDelete(card._id);
   };
@@ -23,9 +23,10 @@ function ConfirmDeleteModal({ isOpen, onDelete, card, onClose }) {
         <button
           onClick={handleDeleteClick}
           type="button"
+          disabled={isLoading}
           className="confirm-modal__delete"
         >
-          Yes, delete item
+          {isLoading ? "Deleting..." : "Yes, delete item"}
         </button>
         <button
           onClick={onClose}
