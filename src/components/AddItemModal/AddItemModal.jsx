@@ -2,6 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import "./AddItemModal.css";
 import { useEffect, useMemo } from "react";
+import useModalClose from "../../hooks/useModalClose";
 
 const AddItemModal = ({ isOpen, onAddItem, onClose, isLoading }) => {
   const defaultValues = useMemo(
@@ -12,7 +13,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, isLoading }) => {
     }),
     [],
   );
-
+  useModalClose(isOpen, onClose);
   const {
     values,
     errors,

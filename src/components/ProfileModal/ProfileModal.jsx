@@ -3,6 +3,7 @@ import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useEffect, useMemo } from "react";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import useModalClose from "../../hooks/useModalClose";
 
 const ProfileModal = ({ isOpen, handleUserUpdate, onClose, isLoading }) => {
   const { name, avatar } = useContext(CurrentUserContext);
@@ -14,6 +15,7 @@ const ProfileModal = ({ isOpen, handleUserUpdate, onClose, isLoading }) => {
     [name, avatar],
   );
 
+  useModalClose(isOpen, onClose);
   const {
     values,
     errors,

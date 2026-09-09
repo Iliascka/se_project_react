@@ -1,6 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import { useEffect, useMemo } from "react";
+import useModalClose from "../../hooks/useModalClose";
 
 const RegisterModal = ({
   isOpen,
@@ -18,7 +19,7 @@ const RegisterModal = ({
     }),
     [],
   );
-
+  useModalClose(isOpen, onClose);
   const {
     values,
     errors,

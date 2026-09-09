@@ -4,12 +4,13 @@ import closeBtnDark from "../../assets/closeBtnDark.png";
 import "../ModalWithForm/ModalWithForm.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import useModalClose from "../../hooks/useModalClose";
 
 function ItemModal({ isOpen, onClose, card, deleteModal }) {
   const { id } = useContext(CurrentUserContext);
   const isOwn = card.owner === id;
   const itemDeleteButtonClassName = `modal__delete-btn ${isOwn ? "" : "modal__delete-button_hidden"}`;
-
+  useModalClose(isOpen, onClose);
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`} onClick={onClose}>
       <div

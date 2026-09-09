@@ -29,6 +29,8 @@
   width: 100%;
   border-radius: 19px;
   cursor: pointer;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .card__like-btn {

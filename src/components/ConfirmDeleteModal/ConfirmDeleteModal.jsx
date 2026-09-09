@@ -1,13 +1,15 @@
 import "./ConfirmDeleteModal.css";
 import closeBtn from "../../assets/closeBtnGrey.png";
+import useModalClose from "../../hooks/useModalClose";
 
 function ConfirmDeleteModal({ isOpen, onDelete, card, onClose, isLoading }) {
   const handleDeleteClick = () => {
     onDelete(card._id);
   };
+  useModalClose(isOpen, onClose);
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      <div className="confirm-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="confirm-modal">
         <button type="button" className="confirm-modal__close">
           <img
             onClick={onClose}
