@@ -1,11 +1,5 @@
+import { handleServerResponse } from "./api";
 const baseUrl = "http://localhost:3001";
-
-const handleServerResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error:${res.status}`);
-};
 
 const headers = { "Content-Type": "application/json" };
 
