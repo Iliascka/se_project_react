@@ -1,26 +1,26 @@
-import { handleServerResponse } from "./api";
+import { request } from "./api";
 const baseUrl = "http://localhost:3001";
 
 const headers = { "Content-Type": "application/json" };
 
 export const register = ({ name, avatar, email, password }) => {
-  return fetch(`${baseUrl}/signup`, {
+  return request(`${baseUrl}/signup`, {
     method: "POST",
     headers,
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(handleServerResponse);
+  });
 };
 
 export const login = ({ email, password }) => {
-  return fetch(`${baseUrl}/signin`, {
+  return request(`${baseUrl}/signin`, {
     method: "POST",
     headers,
     body: JSON.stringify({ email, password }),
-  }).then(handleServerResponse);
+  });
 };
 
 export const update = ({ name, avatar, token }) => {
-  return fetch(`${baseUrl}/users/me`, {
+  return request(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -28,5 +28,5 @@ export const update = ({ name, avatar, token }) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar, token }),
-  }).then(handleServerResponse);
+  });
 };
