@@ -1,5 +1,7 @@
 import { request } from "./api";
-const baseUrl = "http://localhost:3001";
+const baseUrl = import.meta.env.PROD
+  ? "https://api.wtwr-ilias.aerwear.ro"
+  : "http://localhost:3001";
 
 const headers = { "Content-Type": "application/json" };
 
