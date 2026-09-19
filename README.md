@@ -17,14 +17,14 @@ A weather-based clothing recommendation app that suggests what to wear depending
 - CSS
 - Vite
 
-## BackEnd Repository
+## Backend Repository
 
 [WTWR Backend](https://github.com/Iliascka/se_project_express.git)
 
 ## Project Preview
 
-Coming soon
+[Open the live WTWR application](https://wtwr-ilias.aerwear.ro)
 
 ## Deployment
 
-Coming soon
+The application is deployed on a Google Cloud virtual machine using Nginx and PM2, with HTTPS enabled for secure access.
